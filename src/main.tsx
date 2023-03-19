@@ -6,9 +6,13 @@ import { BrowserRouter } from 'react-router-dom';
 
 import App from './App';
 import { SupabaseProvider } from './SupabaseProvider';
+import type { Database } from './supabaseTypes';
 import { theme } from './theme';
 
-const client = new SupabaseClient(import.meta.env.VITE_SUPABASE_URL!, import.meta.env.VITE_SUPABASE_ANON_KEY!);
+const client = new SupabaseClient<Database>(
+  import.meta.env.VITE_SUPABASE_URL!,
+  import.meta.env.VITE_SUPABASE_ANON_KEY!
+);
 
 ReactDOM.createRoot(document.querySelector('#root')!).render(
   <>

@@ -13,12 +13,16 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "@carlosdp/weaver": "0.3.1",
     "@chakra-ui/react": "^2.0.0",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@netlify/functions": "^1.3.0",
+    "@sentry/serverless": "^7.43.0",
     "@supabase/supabase-js": "^2.1.1",
+    "axios": "^1.3.4",
     "framer-motion": "^6",
+    "hnswlib-node": "^1.4.2",
     "react": "^18",
     "react-dom": "^18",
     "react-router-dom": "^6",
@@ -57,5 +61,6 @@
     "typescript": "^4.6.3",
     "vite": "^3",
     "vitest": "^0.25"
-  }
+  },
+  "packageManager": "yarn@3.5.0"
 }

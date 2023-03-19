@@ -1,9 +1,11 @@
 import { AuthUser, SupabaseClient } from '@supabase/supabase-js';
 import { createContext, useCallback, useContext, useEffect, useState } from 'react';
 
+import type { Database } from './supabaseTypes';
+
 type User = AuthUser & { is_staff: boolean };
 type SupabaseContextProps = {
-  client: SupabaseClient;
+  client: SupabaseClient<Database>;
   logout: () => void;
   user?: User | null;
 };
@@ -11,7 +13,7 @@ type SupabaseContextProps = {
 const SupabaseContext = createContext<SupabaseContextProps>(null!);
 
 export type SupabaseProviderProps = {
-  client: SupabaseClient;
+  client: SupabaseClient<Database>;
   children: React.ReactNode | React.ReactNode[];
 };
 
