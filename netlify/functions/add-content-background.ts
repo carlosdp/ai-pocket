@@ -13,6 +13,7 @@ import {
 import { HandlerEvent, HandlerContext, BackgroundHandler } from '@netlify/functions';
 import * as Sentry from '@sentry/serverless';
 import { createClient } from '@supabase/supabase-js';
+import hnswlib from 'hnswlib-node';
 
 import type { Database } from '../../src/supabaseTypes';
 
@@ -54,6 +55,12 @@ const _handler: BackgroundHandler = async (event: HandlerEvent, _context: Handle
   //     body: JSON.stringify({ error: 'Must be staff' }),
   //   };
   // }
+
+  // note: this is a hack because of the stupid dynamic imports
+  if (!hnswlib) {
+    console.error('hnswlib not found');
+  }
+
   const weaver = new Weaver({
     openaiApiKey: process.env.OPENAI_API_KEY!,
     supabaseUrl: process.env.VITE_SUPABASE_URL!,
