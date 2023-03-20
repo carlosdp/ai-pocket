@@ -3,17 +3,18 @@ import {
   Weaver,
   WebContentAsMarkdown,
   UniversalWriter,
-  UniversalChoreographer,
   UniversalDirector,
   AzureSpeech,
   StandardAssets,
   BingImageSearchAssetGenerator,
   BrowserAssetGenerator,
+  Story,
 } from '@carlosdp/weaver';
+import { WeaverContext } from '@carlosdp/weaver/dist/src/context';
+import { PipelineOperator } from '@carlosdp/weaver/dist/src/pipelineOperator';
 import { HandlerEvent, HandlerContext, BackgroundHandler } from '@netlify/functions';
 import * as Sentry from '@sentry/serverless';
 import { createClient } from '@supabase/supabase-js';
-import hnswlib from 'hnswlib-node';
 
 import type { Database } from '../../src/supabaseTypes';
 
@@ -26,6 +27,36 @@ if (process.env.NODE_ENV === 'production') {
     // We recommend adjusting this value in production
     tracesSampleRate: 1,
   });
+}
+
+export class SimpleChoreographer extends PipelineOperator {
+  name = 'SimpleChoreographer';
+  description = 'Just chooses the screenshot of the webpage';
+
+  async generate(_context: WeaverContext, story: Story): Promise<Story> {
+    if (!story.assets) {
+      throw new Error('No assets found');
+    }
+
+    const assets = Object.values(story.assets).filter(a => a.type !== 'summary');
+    const screenshot = assets.find(a => a.type === 'url' && a.description === 'Article Section');
+
+    const scenes = story.blocks.map(s => ({ id: s.id, type: s.type, direction: s.direction }));
+    // const sceneTypes = this.sceneTypes.map(s => ({ id: s.id, description: s.description, arguments: s.schema }));
+
+    const sceneArgs = await Promise.all(
+      scenes.map(async _scene => {
+        return {
+          url_id: screenshot?.id,
+        };
+      })
+    );
+
+    return {
+      ...story,
+      blocks: story.blocks.map((s, i) => ({ ...s, arguments: sceneArgs[i] })),
+    };
+  }
 }
 
 const _handler: BackgroundHandler = async (event: HandlerEvent, _context: HandlerContext) => {
@@ -56,11 +87,6 @@ const _handler: BackgroundHandler = async (event: HandlerEvent, _context: Handle
   //   };
   // }
 
-  // note: this is a hack because of the stupid dynamic imports
-  if (!hnswlib) {
-    console.error('hnswlib not found');
-  }
-
   const weaver = new Weaver({
     openaiApiKey: process.env.OPENAI_API_KEY!,
     supabaseUrl: process.env.VITE_SUPABASE_URL!,
@@ -73,11 +99,11 @@ const _handler: BackgroundHandler = async (event: HandlerEvent, _context: Handle
   const description =
     "A quick video summary of some web content the user doesn't have time to read, from the perspective of an interested 3rd party";
   const sceneTypes = [
-    {
-      id: 'image',
-      description: 'Display an image full screen, specify which image in the description',
-      schema: { image_id: { type: 'string' } },
-    },
+    // {
+    //   id: 'image',
+    //   description: 'Display an image full screen, specify which image in the description',
+    //   schema: { image_id: { type: 'string' } },
+    // },
     {
       id: 'screenshot',
       description: 'Display a screenshot of a web page, specify which web page in the description',
@@ -96,7 +122,7 @@ const _handler: BackgroundHandler = async (event: HandlerEvent, _context: Handle
   await weaver.pipe(new UniversalDirector(sceneTypes, description));
   // eslint-disable-next-line no-console
   console.log('Choreographing content...');
-  await weaver.pipe(new UniversalChoreographer(sceneTypes));
+  await weaver.pipe(new SimpleChoreographer());
   // eslint-disable-next-line no-console
   console.log('Generating assets...');
   await weaver.pipe(
