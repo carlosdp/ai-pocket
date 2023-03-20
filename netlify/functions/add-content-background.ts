@@ -61,8 +61,7 @@ const _handler: BackgroundHandler = async (event: HandlerEvent, _context: Handle
     storageBucket: 'assets',
     storagePrefix: data.userId,
   });
-  const puppeteerOptions =
-    process.env.NODE_ENV === 'production' ? undefined : { executablePath: '/opt/homebrew/bin/chromium' };
+  const puppeteerOptions = process.env.NETLIFY_DEV ? { executablePath: '/opt/homebrew/bin/chromium' } : undefined;
 
   const description =
     "A quick video summary of some web content the user doesn't have time to read, from the perspective of an interested 3rd party";
