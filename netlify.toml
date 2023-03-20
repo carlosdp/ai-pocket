@@ -3,4 +3,4 @@
   envFiles = [".env.netlify"]
 
 [functions."*add-content*"]
-  external_node_modules = ["@sparticuz/chromium"]
+  external_node_modules = ["@sparticuz/chromium", "hnswlib-node"]
