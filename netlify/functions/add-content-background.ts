@@ -97,7 +97,7 @@ const _handler: BackgroundHandler = async (event: HandlerEvent, _context: Handle
   const puppeteerOptions = process.env.NETLIFY_DEV ? { executablePath: '/opt/homebrew/bin/chromium' } : undefined;
 
   const description =
-    "A quick video summary of some web content the user doesn't have time to read, from the perspective of an interested 3rd party";
+    "A summary of some web content the user doesn't have time to read, from the perspective of an interested 3rd party. Just go into the summary, don't bother with an introduction or conclusion. Make sure to inform the user of everything the content entails.";
   const sceneTypes = [
     // {
     //   id: 'image',
