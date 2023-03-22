@@ -15,6 +15,7 @@ import { PipelineOperator } from '@carlosdp/weaver/dist/src/pipelineOperator';
 import { HandlerEvent, HandlerContext, BackgroundHandler } from '@netlify/functions';
 import * as Sentry from '@sentry/serverless';
 import { createClient } from '@supabase/supabase-js';
+import axios from 'axios';
 
 import type { Database } from '../../src/supabaseTypes';
 
@@ -60,6 +61,10 @@ export class SimpleChoreographer extends PipelineOperator {
 }
 
 const _handler: BackgroundHandler = async (event: HandlerEvent, _context: HandlerContext) => {
+  if (event.httpMethod !== 'POST') {
+    return;
+  }
+
   const data = JSON.parse(event.body || '');
   // const supabaseSession = event.headers['x-supabase-access-token'];
 
@@ -86,6 +91,18 @@ const _handler: BackgroundHandler = async (event: HandlerEvent, _context: Handle
   //     body: JSON.stringify({ error: 'Must be staff' }),
   //   };
   // }
+
+  const { data: savedContent, error: savedContentError } = await client
+    .from('saved_contents')
+    .insert({
+      url: data.url,
+    })
+    .select('id')
+    .single();
+
+  if (savedContentError) {
+    throw new Error(savedContentError.message);
+  }
 
   const weaver = new Weaver({
     openaiApiKey: process.env.OPENAI_API_KEY!,
@@ -135,10 +152,21 @@ const _handler: BackgroundHandler = async (event: HandlerEvent, _context: Handle
   console.log('Generating speech...');
   await weaver.pipe(new AzureSpeech(process.env.AZURE_SPEECH_KEY!));
 
-  await client.from('saved_contents').insert({
-    url: data.url,
-    story: weaver.story,
-  });
+  await client.from('saved_contents').update({ story: weaver.story }).eq('id', savedContent.id);
+
+  if (process.env.RUNPOD_RENDER_POD) {
+    await axios.post(
+      `${process.env.URL}/.netlify/functions/render-content-background`,
+      {
+        id: savedContent.id,
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+  }
 };
 
 const handler = Sentry.AWSLambda.wrapHandler(_handler);
