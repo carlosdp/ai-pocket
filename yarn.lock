@@ -1757,9 +1757,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@carlosdp/weaver@npm:0.3.2":
-  version: 0.3.2
-  resolution: "@carlosdp/weaver@npm:0.3.2::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40carlosdp%2Fweaver%2F0.3.2%2F6b6ac12bb65c3e21486d09185ff38f4085b0e36a"
+"@carlosdp/weaver@npm:0.3.3":
+  version: 0.3.3
+  resolution: "@carlosdp/weaver@npm:0.3.3::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40carlosdp%2Fweaver%2F0.3.3%2F22b91f549434d79272dc9f5e38e40d0995c4e8b8"
   dependencies:
     "@sparticuz/chromium": ^110.0.0
     "@supabase/supabase-js": ^2
@@ -1773,7 +1773,7 @@ __metadata:
     puppeteer-core: ^19.6.0
     sanitize-html: ^2.10.0
     turndown: ^7.1.1
-  checksum: cbf7ce0b0a9434a1388bb8c9a4c3d835d45ff57711e2eeae7a7a81b420b3a68369dd861257f12df39f3fcdff6bd23c270e2f704493337ec388b676aad06bac03
+  checksum: 287de06fb04c7340975bd1a87f5a31671521312849840e973fdcb05cc33ef5ace5b26e3b49cf6d0af3f5c71725d812f7e5967d2f3f60fbdf1222e9e6f3eded8b
   languageName: node
   linkType: hard
 
@@ -5846,7 +5846,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "application@workspace:."
   dependencies:
-    "@carlosdp/weaver": 0.3.2
+    "@carlosdp/weaver": 0.3.3
     "@chakra-ui/react": ^2.0.0
     "@emotion/eslint-plugin": ^11.7.0
     "@emotion/react": ^11
