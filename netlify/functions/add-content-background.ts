@@ -97,7 +97,7 @@ const _handler: BackgroundHandler = async (event: HandlerEvent, _context: Handle
   const puppeteerOptions = process.env.NETLIFY_DEV ? { executablePath: '/opt/homebrew/bin/chromium' } : undefined;
 
   const description =
-    "A summary of some web content from the perspective of an interested 3rd party. Just go into the summary, don't bother with an introduction or conclusion. Speak in complete sentences.";
+    "Talk about the web content from the perspective of an interested 3rd party. Just get into the content, don't bother with an introduction or conclusion. Speak in complete sentences, and be concise.";
   const sceneTypes = [
     // {
     //   id: 'image',
