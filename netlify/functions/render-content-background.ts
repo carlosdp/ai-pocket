@@ -97,7 +97,7 @@ const _handler: BackgroundHandler = async (event: HandlerEvent, _context: Handle
         await client
           .from('saved_contents')
           .update({
-            storage_key: statusRes.data.output.storage_key,
+            storage_key: statusRes.data.output.result,
           })
           .eq('id', savedContent.id);
 
