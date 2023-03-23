@@ -117,7 +117,7 @@ const _handler: BackgroundHandler = async (event: HandlerEvent, _context: Handle
         await client
           .from('videos')
           .update({
-            storage_key: statusRes.data.output.storage_key,
+            storage_key: statusRes.data.output.result,
           })
           .eq('id', video.id);
 
