@@ -54,8 +54,12 @@ const _handler: BackgroundHandler = async (event: HandlerEvent, _context: Handle
   }
 
   const contents = savedContents
-    .filter(content => content.storage_key === null)
+    .filter(content => content.storage_key !== null)
     .map(content => ({ id: content.id, video: content.storage_key }));
+
+  if (contents.length === 0) {
+    throw new Error('No contents to render');
+  }
 
   const { data: video, error: videoError } = await client
     .from('videos')
