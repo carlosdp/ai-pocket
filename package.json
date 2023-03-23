@@ -6,6 +6,7 @@
     "dev": "vite --port 5173",
     "dev:extension": "vite -c vite.ext.config.ts --port 5173",
     "build": "tsc && vite build",
+    "build:extension": "tsc && vite build -c vite.ext.config.ts",
     "preview": "vite preview",
     "lint": "eslint --max-warnings 0 \"**/*.{ts,tsx,js,jsx}\"",
     "fix": "eslint --max-warnings 0 --fix \"**/*.{ts,tsx,js,jsx}\"",

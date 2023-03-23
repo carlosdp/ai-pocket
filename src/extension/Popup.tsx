@@ -35,6 +35,10 @@ export const Popup = () => {
     [user]
   );
 
+  const onLogin = useCallback(() => {
+    chrome.tabs.create({ url: `${import.meta.env.VITE_URL}/login` });
+  }, []);
+
   useEffect(() => {
     chrome.tabs.query({ currentWindow: true, active: true }, tabs => {
       setUrl(tabs[0].url ?? null);
@@ -47,7 +51,7 @@ export const Popup = () => {
   if (!user) {
     return (
       <Box minWidth="300px">
-        <Button>Login</Button>
+        <Button onClick={onLogin}>Login</Button>
       </Box>
     );
   }
