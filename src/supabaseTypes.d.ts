@@ -62,23 +62,26 @@ export interface Database {
       };
       videos: {
         Row: {
+          contents: Json;
           created_at: string | null;
           id: string;
-          storage_key: string;
+          storage_key: string | null;
           updated_at: string | null;
           user_id: string;
         };
         Insert: {
+          contents: Json;
           created_at?: string | null;
           id?: string;
-          storage_key: string;
+          storage_key?: string | null;
           updated_at?: string | null;
           user_id: string;
         };
         Update: {
+          contents?: Json;
           created_at?: string | null;
           id?: string;
-          storage_key?: string;
+          storage_key?: string | null;
           updated_at?: string | null;
           user_id?: string;
         };

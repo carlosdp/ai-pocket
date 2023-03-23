@@ -44,14 +44,30 @@ const _handler: BackgroundHandler = async (event: HandlerEvent, _context: Handle
   //     body: JSON.stringify({ error: 'Must be staff' }),
   //   };
   // }
-  const { data: savedContent, error: contentError } = await client
+  const { data: savedContents, error: contentError } = await client
     .from('saved_contents')
     .select('*')
-    .eq('id', data.id)
-    .single();
+    .eq('user_id', data.user_id);
 
   if (contentError) {
     throw new Error(contentError.message);
+  }
+
+  const contents = savedContents
+    .filter(content => content.storage_key === null)
+    .map(content => ({ id: content.id, video: content.storage_key }));
+
+  const { data: video, error: videoError } = await client
+    .from('videos')
+    .insert({
+      contents,
+      user_id: data.user_id,
+    })
+    .select('id')
+    .single();
+
+  if (videoError) {
+    throw new Error(videoError.message);
   }
 
   try {
@@ -59,9 +75,9 @@ const _handler: BackgroundHandler = async (event: HandlerEvent, _context: Handle
       `https://api.runpod.ai/v1/${process.env.RUNPOD_RENDER_POD}/run`,
       {
         input: {
-          story: JSON.stringify(savedContent.story),
-          id: savedContent.id,
-          user_id: savedContent.user_id,
+          contents,
+          id: video.id,
+          user_id: data.user_id,
         },
       },
       {
@@ -92,14 +108,14 @@ const _handler: BackgroundHandler = async (event: HandlerEvent, _context: Handle
 
       if (statusRes.data.status === 'COMPLETED') {
         // eslint-disable-next-line no-console
-        console.log(`saving render for request ${savedContent.id}`);
+        console.log(`saving vidoe render for request ${video.id}`);
 
         await client
-          .from('saved_contents')
+          .from('videos')
           .update({
             storage_key: statusRes.data.output.storage_key,
           })
-          .eq('id', savedContent.id);
+          .eq('id', video.id);
 
         break;
       }

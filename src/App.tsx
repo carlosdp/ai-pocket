@@ -1,5 +1,5 @@
 import { Box, Button, Text } from '@chakra-ui/react';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 
 import { useSupabase } from './SupabaseProvider';
@@ -8,11 +8,30 @@ import { AddContent } from './screens/AddContent';
 import { Login } from './screens/Login';
 
 function Home() {
+  const { user } = useSupabase();
+
+  const render = useCallback(async () => {
+    if (user) {
+      const res = await fetch('/.netlify/functions/send-video-background', {
+        method: 'POST',
+        body: JSON.stringify({ user_id: user.id }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!res.ok) {
+        console.error('Error adding content');
+      }
+    }
+  }, [user]);
+
   return (
     <Box width="100%" maxWidth="936px">
       <Button as={Link} to="/add">
         Add
       </Button>
+      <Button onClick={render}>Render Video</Button>
     </Box>
   );
 }
