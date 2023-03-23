@@ -110,7 +110,7 @@ const _handler: BackgroundHandler = async (event: HandlerEvent, _context: Handle
     supabaseUrl: process.env.VITE_SUPABASE_URL!,
     supabaseServiceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY!,
     storageBucket: 'assets',
-    storagePrefix: data.userId,
+    storagePrefix: data.user_id,
   });
   const puppeteerOptions = process.env.NETLIFY_DEV ? { executablePath: '/opt/homebrew/bin/chromium' } : undefined;
 
