@@ -3,7 +3,7 @@ import { createContext, useCallback, useContext, useEffect, useState } from 'rea
 
 import type { Database } from './supabaseTypes';
 
-type User = AuthUser & { is_staff: boolean };
+type User = AuthUser & { is_staff?: boolean };
 type SupabaseContextProps = {
   client: SupabaseClient<Database>;
   logout: () => void;
@@ -23,27 +23,18 @@ export const SupabaseProvider = ({ client, children }: SupabaseProviderProps) =>
   useEffect(() => {
     client.auth
       .getUser()
-      .then(res =>
-        res.data.user
-          ? client
-              .from('users')
-              .select('*')
-              .eq('id', res.data.user.id)
-              .single()
-              .then(resu => setUser({ ...res.data.user, ...resu.data }))
-          : setUser(res.data.user)
-      )
+      .then(res => setUser(res.data.user))
       .catch(console.error);
 
     client.auth.onAuthStateChange((event, session) => {
       if (event === 'SIGNED_IN') {
         // eslint-disable-next-line promise/catch-or-return
-        client
-          .from('users')
-          .select('*')
-          .eq('id', session!.user!.id)
-          .single()
-          .then(resu => setUser({ ...session!.user!, ...resu.data }));
+        // client
+        //   .from('users')
+        //   .select('*')
+        //   .eq('id', session!.user!.id)
+        //   .single()
+        //   .then(resu => setUser({ ...session!.user!, ...resu.data }));
       } else if (event === 'SIGNED_OUT') {
         setUser(null);
       }
