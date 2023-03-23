@@ -1,11 +1,14 @@
-import { Box, Text } from '@chakra-ui/react';
-import { useCallback, useEffect, useState } from 'react';
+import { Box, Button, Center, Flex, Heading, Text } from '@chakra-ui/react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { useSupabase } from '../SupabaseProvider';
 
 export const Popup = () => {
   const [url, setUrl] = useState<string | null>(null);
   const { client, user } = useSupabase();
+  const [loading, setLoading] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const saving = useRef(false);
 
   useEffect(() => {
     if (!user) {
@@ -19,8 +22,14 @@ export const Popup = () => {
 
   const submit = useCallback(
     async (contentUrl: string) => {
-      if (user) {
-        chrome.runtime.sendMessage({ url: contentUrl, user_id: user.id });
+      if (user && !saving.current) {
+        saving.current = true;
+        setLoading(true);
+        chrome.runtime.sendMessage({ data: { url: contentUrl, user_id: user.id } }, res => {
+          saving.current = false;
+          setLoading(false);
+          setSaved(res);
+        });
       }
     },
     [user]
@@ -35,9 +44,35 @@ export const Popup = () => {
     });
   }, [submit]);
 
+  if (!user) {
+    return (
+      <Box minWidth="300px">
+        <Button>Login</Button>
+      </Box>
+    );
+  }
+
   return (
-    <Box minWidth="300px">
-      <Text>Current: {url}</Text>
-    </Box>
+    <Flex flexDirection="column" gap="22px" minWidth="400px" minHeight="200px" padding="16px">
+      <Heading>AI Pocket</Heading>
+      <Center>
+        {loading ? (
+          <Text fontSize="2xl" fontWeight="bold">
+            Saving...
+          </Text>
+        ) : saved ? (
+          <Text fontSize="2xl" fontWeight="bold">
+            Saved!
+          </Text>
+        ) : (
+          <Text fontSize="2xl" fontWeight="bold">
+            Not saved
+          </Text>
+        )}
+      </Center>
+      <Center>
+        <Text fontSize="md">{url}</Text>
+      </Center>
+    </Flex>
   );
 };

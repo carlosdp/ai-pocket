@@ -1,16 +1,22 @@
-chrome.runtime.onMessage.addListener(async function (request, _sender, _sendResponse) {
+chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
   // @ts-ignore
-  const res = await fetch(`${import.meta.env.VITE_URL}/.netlify/functions/add-content-background`, {
+  fetch(`${import.meta.env.VITE_URL}/.netlify/functions/add-content-background`, {
     method: 'POST',
     body: JSON.stringify(request.data),
     headers: {
       'Content-Type': 'application/json',
     },
-  });
+  })
+    .then(res => {
+      if (!res.ok) {
+        console.error('Error adding content');
+      }
 
-  if (!res.ok) {
-    console.error('Error adding content');
-  }
+      sendResponse(true);
+    })
+    .catch(error => {
+      console.error(error);
+    });
 
   return true;
 });
