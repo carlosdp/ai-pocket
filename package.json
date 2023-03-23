@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vite --port 5173",
     "dev:extension": "vite -c vite.ext.config.ts --port 5173",
+    "dev:email": "email dev",
     "build": "tsc && vite build",
     "build:extension": "tsc && vite build -c vite.ext.config.ts",
     "preview": "vite preview",
@@ -20,6 +21,9 @@
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@netlify/functions": "^1.3.0",
+    "@react-email/button": "^0.0.7",
+    "@react-email/html": "^0.0.4",
+    "@react-email/render": "^0.0.6",
     "@sentry/serverless": "^7.43.0",
     "@supabase/auth-ui-react": "^0.2.6",
     "@supabase/supabase-js": "^2.1.1",
@@ -27,8 +31,10 @@
     "axios": "^1.3.4",
     "framer-motion": "^6",
     "hnswlib-node": "^1.4.2",
+    "postmark": "^3.0.15",
     "react": "^18",
     "react-dom": "^18",
+    "react-email": "^1.9.0",
     "react-router-dom": "^6",
     "react-supabase": "^0.2.0"
   },

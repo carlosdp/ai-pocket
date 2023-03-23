@@ -1,9 +1,12 @@
 /* eslint-disable unicorn/filename-case */
 import { HandlerEvent, HandlerContext, BackgroundHandler } from '@netlify/functions';
+import { render } from '@react-email/render';
 import * as Sentry from '@sentry/serverless';
 import { createClient } from '@supabase/supabase-js';
 import axios from 'axios';
+import postmark from 'postmark';
 
+import { Email } from '../../emails';
 import type { Database } from '../../src/supabaseTypes';
 
 if (process.env.NODE_ENV === 'production') {
@@ -16,6 +19,8 @@ if (process.env.NODE_ENV === 'production') {
     tracesSampleRate: 1,
   });
 }
+
+const postmarkClient = new postmark.ServerClient(process.env.POSTMARK_API_KEY!);
 
 const _handler: BackgroundHandler = async (event: HandlerEvent, _context: HandlerContext) => {
   const data = JSON.parse(event.body || '');
@@ -120,6 +125,23 @@ const _handler: BackgroundHandler = async (event: HandlerEvent, _context: Handle
             storage_key: statusRes.data.output.result,
           })
           .eq('id', video.id);
+
+        const { data: user, error: userError } = await client.from('users').select('*').eq('id', data.user_id).single();
+
+        if (userError) {
+          throw new Error(userError.message);
+        }
+
+        if (user.email) {
+          const emailHtml = render(Email({ videoUrl: `${process.env.VITE_URL}/videos/${video.id}` }));
+
+          await postmarkClient.sendEmail({
+            To: user.email,
+            From: 'videos@overload.carlosdp.xyz',
+            Subject: 'Your saved content summary',
+            HtmlBody: emailHtml,
+          });
+        }
 
         break;
       }
