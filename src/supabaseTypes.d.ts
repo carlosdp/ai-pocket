@@ -37,6 +37,7 @@ export interface Database {
           story: Json | null;
           updated_at: string;
           url: string;
+          user_id: string;
         };
         Insert: {
           created_at?: string;
@@ -46,6 +47,7 @@ export interface Database {
           story?: Json | null;
           updated_at?: string;
           url: string;
+          user_id: string;
         };
         Update: {
           created_at?: string;
@@ -55,6 +57,7 @@ export interface Database {
           story?: Json | null;
           updated_at?: string;
           url?: string;
+          user_id?: string;
         };
       };
       videos: {
@@ -63,18 +66,21 @@ export interface Database {
           id: string;
           storage_key: string;
           updated_at: string | null;
+          user_id: string;
         };
         Insert: {
           created_at?: string | null;
           id?: string;
           storage_key: string;
           updated_at?: string | null;
+          user_id: string;
         };
         Update: {
           created_at?: string | null;
           id?: string;
           storage_key?: string;
           updated_at?: string | null;
+          user_id?: string;
         };
       };
     };

@@ -2,7 +2,7 @@ chrome.runtime.onMessage.addListener(async function (request, _sender, _sendResp
   // @ts-ignore
   const res = await fetch(`${import.meta.env.VITE_URL}/.netlify/functions/add-content-background`, {
     method: 'POST',
-    body: JSON.stringify({ url: request.contentUrl, userId: '1' }),
+    body: JSON.stringify(request.data),
     headers: {
       'Content-Type': 'application/json',
     },
@@ -13,4 +13,8 @@ chrome.runtime.onMessage.addListener(async function (request, _sender, _sendResp
   }
 
   return true;
+});
+
+chrome.runtime.onMessageExternal.addListener((request, _sender, _sendResponse) => {
+  chrome.storage.local.set({ session: request.session });
 });

@@ -96,6 +96,7 @@ const _handler: BackgroundHandler = async (event: HandlerEvent, _context: Handle
     .from('saved_contents')
     .insert({
       url: data.url,
+      user_id: data.user_id,
     })
     .select('id')
     .single();

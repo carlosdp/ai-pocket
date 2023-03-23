@@ -12,7 +12,13 @@
   "host_permissions": [
     "http://localhost/*"
   ],
+  "externally_connectable": {
+    "matches": [
+      "http://localhost/*"
+    ]
+  },
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "storage"
   ]
 }

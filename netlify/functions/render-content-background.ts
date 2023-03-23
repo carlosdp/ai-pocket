@@ -94,9 +94,12 @@ const _handler: BackgroundHandler = async (event: HandlerEvent, _context: Handle
         // eslint-disable-next-line no-console
         console.log(`saving render for request ${savedContent.id}`);
 
-        await client.from('videos').insert({
-          storage_key: statusRes.data.output.storage_key,
-        });
+        await client
+          .from('saved_contents')
+          .update({
+            storage_key: statusRes.data.output.storage_key,
+          })
+          .eq('id', savedContent.id);
 
         break;
       }
