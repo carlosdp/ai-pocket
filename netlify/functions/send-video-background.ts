@@ -4,7 +4,7 @@ import { render } from '@react-email/render';
 import * as Sentry from '@sentry/serverless';
 import { createClient } from '@supabase/supabase-js';
 import axios from 'axios';
-import postmark from 'postmark';
+import { ServerClient } from 'postmark';
 
 import { Email } from '../../emails';
 import type { Database } from '../../src/supabaseTypes';
@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-const postmarkClient = new postmark.ServerClient(process.env.POSTMARK_API_KEY!);
+const postmarkClient = new ServerClient(process.env.POSTMARK_API_KEY!);
 
 const _handler: BackgroundHandler = async (event: HandlerEvent, _context: HandlerContext) => {
   const data = JSON.parse(event.body || '');
