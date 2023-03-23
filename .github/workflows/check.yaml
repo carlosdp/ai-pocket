@@ -26,3 +26,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Check Typescript
         run: yarn tsc --noEmit
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
