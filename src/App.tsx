@@ -1,41 +1,14 @@
-import { Box, Button, Text } from '@chakra-ui/react';
-import { useCallback, useEffect } from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Box, Text } from '@chakra-ui/react';
+import { useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 
 import { useSupabase } from './SupabaseProvider';
 import { AuthenticatedRoutes } from './components/AuthenticatedRoutes';
 import { AddContent } from './screens/AddContent';
+import { Admin } from './screens/Admin';
 import { Login } from './screens/Login';
+import { SavedContents } from './screens/SavedContents';
 import { WatchVideo } from './screens/WatchVideo';
-
-function Home() {
-  const { user } = useSupabase();
-
-  const render = useCallback(async () => {
-    if (user) {
-      const res = await fetch('/.netlify/functions/send-video-background', {
-        method: 'POST',
-        body: JSON.stringify({ user_id: user.id }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (!res.ok) {
-        console.error('Error adding content');
-      }
-    }
-  }, [user]);
-
-  return (
-    <Box width="100%" maxWidth="936px">
-      <Button as={Link} to="/add">
-        Add
-      </Button>
-      <Button onClick={render}>Render Video</Button>
-    </Box>
-  );
-}
 
 function App() {
   const { client, user } = useSupabase();
@@ -58,7 +31,7 @@ function App() {
   return (
     <Box alignItems="center" flexDirection="column" display="flex" width="100%">
       <Box justifyContent="center" display="flex" width="100%" paddingTop="36px" paddingBottom="36px">
-        <Box alignItems="center" flexDirection="row" display="flex" width="100%" maxWidth="936px">
+        <Box alignItems="center" flexDirection="row" display="flex" width="100%" maxWidth="1690px">
           <Text>Overload</Text>
           <Box marginLeft="auto"></Box>
         </Box>
@@ -66,9 +39,10 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route element={<AuthenticatedRoutes />}>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<SavedContents />} />
           <Route path="/add" element={<AddContent />} />
           <Route path="/videos/:id" element={<WatchVideo />} />
+          <Route path="/admin" element={<Admin />} />
         </Route>
       </Routes>
     </Box>

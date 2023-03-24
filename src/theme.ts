@@ -1,4 +1,4 @@
-import { extendTheme, withDefaultColorScheme } from '@chakra-ui/react';
+import { defineStyleConfig, extendTheme, withDefaultColorScheme } from '@chakra-ui/react';
 
 export const theme = extendTheme(
   {
@@ -6,5 +6,19 @@ export const theme = extendTheme(
       initialColorMode: 'system',
     },
   },
-  withDefaultColorScheme({ colorScheme: 'blue' })
+  withDefaultColorScheme({ colorScheme: 'blue' }),
+  {
+    components: {
+      PageContainer: defineStyleConfig({
+        baseStyle: {
+          maxWidth: '1690px',
+        },
+        variants: {
+          'full-bleed': {
+            maxWidth: '2200px',
+          },
+        },
+      }),
+    },
+  }
 );
