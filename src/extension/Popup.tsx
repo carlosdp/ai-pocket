@@ -1,7 +1,8 @@
-import { Box, Button, Center, Flex, Heading, Text } from '@chakra-ui/react';
+import { Button, Center, Flex, Heading, Text } from '@chakra-ui/react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { useSupabase } from '../SupabaseProvider';
+import { useSavedContent } from '../hooks/useSavedContent';
 
 export const Popup = () => {
   const [url, setUrl] = useState<string | null>(null);
@@ -9,6 +10,7 @@ export const Popup = () => {
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
   const saving = useRef(false);
+  const { data: savedContent, isLoading: savedContentLoading } = useSavedContent(url);
 
   useEffect(() => {
     if (!user) {
@@ -42,41 +44,50 @@ export const Popup = () => {
   useEffect(() => {
     chrome.tabs.query({ currentWindow: true, active: true }, tabs => {
       setUrl(tabs[0].url ?? null);
-      if (tabs[0].url) {
-        submit(tabs[0].url);
-      }
     });
   }, [submit]);
 
-  if (!user) {
-    return (
-      <Box minWidth="300px">
+  useEffect(() => {
+    if (url && !savedContentLoading && !savedContent) {
+      submit(url);
+    }
+  }, [savedContent, savedContentLoading, submit, url]);
+
+  let content = null;
+
+  if (user !== undefined) {
+    content = !user ? (
+      <Center>
         <Button onClick={onLogin}>Login</Button>
-      </Box>
+      </Center>
+    ) : (
+      <>
+        <Heading>Overload</Heading>
+        <Center>
+          {loading || savedContentLoading ? (
+            <Text fontSize="2xl" fontWeight="bold">
+              Saving...
+            </Text>
+          ) : saved || !!savedContent ? (
+            <Text fontSize="2xl" fontWeight="bold">
+              Saved!
+            </Text>
+          ) : (
+            <Text fontSize="2xl" fontWeight="bold">
+              Not saved
+            </Text>
+          )}
+        </Center>
+        <Center>
+          <Text fontSize="md">{url}</Text>
+        </Center>
+      </>
     );
   }
 
   return (
     <Flex flexDirection="column" gap="22px" minWidth="400px" minHeight="200px" padding="16px">
-      <Heading>AI Pocket</Heading>
-      <Center>
-        {loading ? (
-          <Text fontSize="2xl" fontWeight="bold">
-            Saving...
-          </Text>
-        ) : saved ? (
-          <Text fontSize="2xl" fontWeight="bold">
-            Saved!
-          </Text>
-        ) : (
-          <Text fontSize="2xl" fontWeight="bold">
-            Not saved
-          </Text>
-        )}
-      </Center>
-      <Center>
-        <Text fontSize="md">{url}</Text>
-      </Center>
+      {content}
     </Flex>
   );
 };
