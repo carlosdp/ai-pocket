@@ -50,7 +50,7 @@ const _handler: BackgroundHandler = async (event: HandlerEvent, _context: Handle
   //   };
   // }
   const { data: savedContents, error: contentError } = await client
-    .from('saved_contents')
+    .from('queued_contents')
     .select('*')
     .eq('user_id', data.user_id);
 
@@ -63,7 +63,9 @@ const _handler: BackgroundHandler = async (event: HandlerEvent, _context: Handle
     .map(content => ({ id: content.id, video: content.storage_key }));
 
   if (contents.length === 0) {
-    throw new Error('No contents to render');
+    // eslint-disable-next-line no-console
+    console.log('No contents to render');
+    return;
   }
 
   const { data: video, error: videoError } = await client

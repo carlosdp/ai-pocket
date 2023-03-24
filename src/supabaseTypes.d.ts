@@ -88,6 +88,38 @@ export interface Database {
       };
     };
     Views: {
+      queued_contents: {
+        Row: {
+          created_at: string | null;
+          deleted_at: string | null;
+          id: string | null;
+          storage_key: string | null;
+          story: Json | null;
+          updated_at: string | null;
+          url: string | null;
+          user_id: string | null;
+        };
+        Insert: {
+          created_at?: string | null;
+          deleted_at?: string | null;
+          id?: string | null;
+          storage_key?: string | null;
+          story?: Json | null;
+          updated_at?: string | null;
+          url?: string | null;
+          user_id?: string | null;
+        };
+        Update: {
+          created_at?: string | null;
+          deleted_at?: string | null;
+          id?: string | null;
+          storage_key?: string | null;
+          story?: Json | null;
+          updated_at?: string | null;
+          url?: string | null;
+          user_id?: string | null;
+        };
+      };
       users: {
         Row: {
           email: string | null;
