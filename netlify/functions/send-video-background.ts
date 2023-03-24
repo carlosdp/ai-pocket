@@ -138,16 +138,16 @@ const _handler: BackgroundHandler = async (event: HandlerEvent, _context: Handle
         if (user.email) {
           const { data: screenshot, error: screenshotError } = await client.storage
             .from('assets')
-            .download(statusRes.data.output.screenshot);
+            .createSignedUrl(statusRes.data.output.screenshot, 60 * 60 * 24 * 365);
 
           if (screenshotError) {
             throw new Error(screenshotError.message);
           }
 
           // turn screenshot Blob into data URL using Buffer
-          const screenshotUrl = `data:image/png;base64,${Buffer.from(await screenshot.text()).toString('base64')}`;
-
-          const emailHtml = render(Email({ videoUrl: `${process.env.URL}/videos/${video.id}`, screenshotUrl }));
+          const emailHtml = render(
+            Email({ videoUrl: `${process.env.URL}/videos/${video.id}`, screenshotUrl: screenshot.signedUrl })
+          );
 
           await postmarkClient.sendEmail({
             To: user.email,
