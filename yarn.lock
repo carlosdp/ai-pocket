@@ -4730,6 +4730,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-email/img@npm:^0.0.5":
+  version: 0.0.5
+  resolution: "@react-email/img@npm:0.0.5"
+  dependencies:
+    react: 18.2.0
+  checksum: 67da9e4a9e04bdc5445933887e9ecb8fcf0364973284b62f6393728022ad06892a76649aa912241e2df491f83f6d86c29bb30114ccab3d47716b6103fa3b1193
+  languageName: node
+  linkType: hard
+
 "@react-email/render@npm:0.0.6, @react-email/render@npm:^0.0.6":
   version: 0.0.6
   resolution: "@react-email/render@npm:0.0.6"
@@ -6425,6 +6434,7 @@ __metadata:
     "@netlify/functions": ^1.3.0
     "@react-email/button": ^0.0.7
     "@react-email/html": ^0.0.4
+    "@react-email/img": ^0.0.5
     "@react-email/render": ^0.0.6
     "@sentry/serverless": ^7.43.0
     "@supabase/auth-ui-react": ^0.2.6

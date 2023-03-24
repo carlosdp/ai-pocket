@@ -125,6 +125,7 @@ const _handler: BackgroundHandler = async (event: HandlerEvent, _context: Handle
           .from('videos')
           .update({
             storage_key: statusRes.data.output.result,
+            screenshot_storage_key: statusRes.data.output.screenshot,
           })
           .eq('id', video.id);
 
@@ -135,7 +136,21 @@ const _handler: BackgroundHandler = async (event: HandlerEvent, _context: Handle
         }
 
         if (user.email) {
-          const emailHtml = render(Email({ videoUrl: `${process.env.URL}/videos/${video.id}` }));
+          const { data: screenshot, error: screenshotError } = await client.storage
+            .from('assets')
+            .download(statusRes.data.output.screenshot);
+
+          if (screenshotError) {
+            throw new Error(screenshotError.message);
+          }
+
+          // turn screenshot Blob into data URL
+          const reader = new FileReader();
+          reader.readAsDataURL(screenshot);
+          await new Promise(resolve => (reader.onloadend = resolve));
+          const screenshotUrl = reader.result as string;
+
+          const emailHtml = render(Email({ videoUrl: `${process.env.URL}/videos/${video.id}`, screenshotUrl }));
 
           await postmarkClient.sendEmail({
             To: user.email,

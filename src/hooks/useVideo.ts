@@ -20,10 +20,10 @@ export const useVideo = (id: string) => {
     const storageKey = res.data?.storage_key;
     if (storageKey) {
       (async () => {
-        const { data } = await client.storage.from('assets').getPublicUrl(storageKey);
+        const { data } = await client.storage.from('assets').createSignedUrl(storageKey, 60 * 60 * 24);
 
-        if (data.publicUrl) {
-          setVideoUrl(data.publicUrl);
+        if (data?.signedUrl) {
+          setVideoUrl(data.signedUrl);
         }
       })();
     }

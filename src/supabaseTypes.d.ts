@@ -65,6 +65,7 @@ export interface Database {
           contents: Json;
           created_at: string | null;
           id: string;
+          screenshot_storage_key: string | null;
           storage_key: string | null;
           updated_at: string | null;
           user_id: string;
@@ -73,6 +74,7 @@ export interface Database {
           contents: Json;
           created_at?: string | null;
           id?: string;
+          screenshot_storage_key?: string | null;
           storage_key?: string | null;
           updated_at?: string | null;
           user_id: string;
@@ -81,6 +83,7 @@ export interface Database {
           contents?: Json;
           created_at?: string | null;
           id?: string;
+          screenshot_storage_key?: string | null;
           storage_key?: string | null;
           updated_at?: string | null;
           user_id?: string;
