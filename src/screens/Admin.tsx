@@ -23,9 +23,20 @@ export const Admin = () => {
     }
   }, [user]);
 
+  const triggerPending = useCallback(async () => {
+    const res = await fetch('/.netlify/functions/trigger-pending-stories', {
+      method: 'POST',
+    });
+
+    if (!res.ok) {
+      console.error('Error adding content');
+    }
+  }, []);
+
   return (
     <PageContainer>
       <Button onClick={render}>Render Video</Button>
+      <Button onClick={triggerPending}>Trigger Pending</Button>
     </PageContainer>
   );
 };
