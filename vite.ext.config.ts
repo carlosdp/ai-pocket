@@ -15,9 +15,9 @@ const manifest = defineManifest({
     service_worker: 'src/extension/background.ts',
     type: 'module',
   },
-  host_permissions: [`${process.env.VITE_URL}/*`],
+  host_permissions: [`${process.env.URL}/*`],
   externally_connectable: {
-    matches: [`${process.env.VITE_URL}/*`],
+    matches: [`${process.env.URL}/*`],
   },
   permissions: ['activeTab', 'tabs', 'storage'],
 });

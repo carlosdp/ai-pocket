@@ -2,6 +2,7 @@ import { ChakraProvider, ColorModeScript, GlobalStyle } from '@chakra-ui/react';
 import { SupabaseClient } from '@supabase/supabase-js';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter } from 'react-router-dom';
 
 import App from './App';
@@ -13,6 +14,7 @@ const client = new SupabaseClient<Database>(
   import.meta.env.VITE_SUPABASE_URL!,
   import.meta.env.VITE_SUPABASE_ANON_KEY!
 );
+const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.querySelector('#root')!).render(
   <>
@@ -22,7 +24,9 @@ ReactDOM.createRoot(document.querySelector('#root')!).render(
         <GlobalStyle />
         <BrowserRouter>
           <SupabaseProvider client={client}>
-            <App />
+            <QueryClientProvider client={queryClient}>
+              <App />
+            </QueryClientProvider>
           </SupabaseProvider>
         </BrowserRouter>
       </ChakraProvider>

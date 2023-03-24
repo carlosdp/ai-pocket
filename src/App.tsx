@@ -6,6 +6,7 @@ import { useSupabase } from './SupabaseProvider';
 import { AuthenticatedRoutes } from './components/AuthenticatedRoutes';
 import { AddContent } from './screens/AddContent';
 import { Login } from './screens/Login';
+import { WatchVideo } from './screens/WatchVideo';
 
 function Home() {
   const { user } = useSupabase();
@@ -45,7 +46,7 @@ function App() {
         const sessionRes = await client.auth.getSession();
         const session = sessionRes.data.session;
 
-        if (session) {
+        if (session && chrome.runtime) {
           chrome.runtime.sendMessage(import.meta.env.VITE_EXTENSION_ID, {
             session: { access_token: session.access_token, refresh_token: session.refresh_token },
           });
@@ -58,7 +59,7 @@ function App() {
     <Box alignItems="center" flexDirection="column" display="flex" width="100%">
       <Box justifyContent="center" display="flex" width="100%" paddingTop="36px" paddingBottom="36px">
         <Box alignItems="center" flexDirection="row" display="flex" width="100%" maxWidth="936px">
-          <Text>Starter</Text>
+          <Text>Overload</Text>
           <Box marginLeft="auto"></Box>
         </Box>
       </Box>
@@ -67,6 +68,7 @@ function App() {
         <Route element={<AuthenticatedRoutes />}>
           <Route path="/" element={<Home />} />
           <Route path="/add" element={<AddContent />} />
+          <Route path="/videos/:id" element={<WatchVideo />} />
         </Route>
       </Routes>
     </Box>

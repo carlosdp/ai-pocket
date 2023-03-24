@@ -1,6 +1,6 @@
 chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
   // @ts-ignore
-  fetch(`${import.meta.env.VITE_URL}/.netlify/functions/add-content-background`, {
+  fetch(`${import.meta.env.BASE_URL}/.netlify/functions/add-content-background`, {
     method: 'POST',
     body: JSON.stringify(request.data),
     headers: {

@@ -135,7 +135,7 @@ const _handler: BackgroundHandler = async (event: HandlerEvent, _context: Handle
         }
 
         if (user.email) {
-          const emailHtml = render(Email({ videoUrl: `${process.env.VITE_URL}/videos/${video.id}` }));
+          const emailHtml = render(Email({ videoUrl: `${process.env.URL}/videos/${video.id}` }));
 
           await postmarkClient.sendEmail({
             To: user.email,
