@@ -144,11 +144,8 @@ const _handler: BackgroundHandler = async (event: HandlerEvent, _context: Handle
             throw new Error(screenshotError.message);
           }
 
-          // turn screenshot Blob into data URL
-          const reader = new FileReader();
-          reader.readAsDataURL(screenshot);
-          await new Promise(resolve => (reader.onloadend = resolve));
-          const screenshotUrl = reader.result as string;
+          // turn screenshot Blob into data URL using Buffer
+          const screenshotUrl = `data:image/png;base64,${Buffer.from(await screenshot.text()).toString('base64')}`;
 
           const emailHtml = render(Email({ videoUrl: `${process.env.URL}/videos/${video.id}`, screenshotUrl }));
 
