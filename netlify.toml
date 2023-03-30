@@ -4,3 +4,5 @@
 
 [functions."*add-content*"]
   external_node_modules = ["@sparticuz/chromium"]
+[functions."*synthesize*"]
+  external_node_modules = ["ffmpeg-static"]

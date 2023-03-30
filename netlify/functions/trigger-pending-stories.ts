@@ -57,7 +57,7 @@ const _handler: BackgroundHandler = async (_event: HandlerEvent, _context: Handl
     console.log(`Triggering briefing for user ${userId}`);
 
     await axios.post(
-      `${process.env.URL}/.netlify/functions/send-video-background`,
+      `${process.env.URL}/.netlify/functions/synthesize-story-background`,
       { user_id: userId },
       { headers: { 'Content-Type': 'application/json' } }
     );

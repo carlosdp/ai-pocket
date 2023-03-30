@@ -9,7 +9,7 @@ export const Admin = () => {
 
   const render = useCallback(async () => {
     if (user) {
-      const res = await fetch('/.netlify/functions/send-video-background', {
+      const res = await fetch('/.netlify/functions/synthesize-story-background', {
         method: 'POST',
         body: JSON.stringify({ user_id: user.id }),
         headers: {
