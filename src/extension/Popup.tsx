@@ -38,7 +38,7 @@ export const Popup = () => {
   );
 
   const onLogin = useCallback(() => {
-    chrome.tabs.create({ url: `${import.meta.env.BASE_URL}/login` });
+    chrome.tabs.create({ url: `${import.meta.env.URL}/login` });
   }, []);
 
   useEffect(() => {

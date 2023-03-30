@@ -26,6 +26,7 @@ const manifest = defineManifest({
 export default defineConfig({
   define: {
     global: process.env.VITEST ? 'global' : 'globalThis',
+    'import.meta.env.URL': JSON.stringify(process.env.URL),
   },
   plugins: [crx({ manifest }), react()],
   publicDir: 'public_ext',

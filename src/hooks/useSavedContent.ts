@@ -9,13 +9,13 @@ export const useSavedContent = (url?: string | null) => {
   return useQuery({
     queryKey: ['savedContent', url],
     queryFn: async () => {
-      const { data, error } = await client.from('saved_contents').select('*').eq('url', url).single();
+      const { data, error } = await client.from('saved_contents').select('*').eq('url', url);
 
       if (error) {
         throw new Error(error.message);
       }
 
-      return data;
+      return data.length > 0 ? data[0] : null;
     },
     enabled: !!url,
   });

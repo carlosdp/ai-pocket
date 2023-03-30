@@ -1855,9 +1855,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@carlosdp/weaver@npm:0.3.3":
-  version: 0.3.3
-  resolution: "@carlosdp/weaver@npm:0.3.3::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40carlosdp%2Fweaver%2F0.3.3%2F22b91f549434d79272dc9f5e38e40d0995c4e8b8"
+"@carlosdp/weaver@npm:0.3.4":
+  version: 0.3.4
+  resolution: "@carlosdp/weaver@npm:0.3.4::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40carlosdp%2Fweaver%2F0.3.4%2Fb2deb7590eb8a6c2dc1a5805a8d4d08570e7068a"
   dependencies:
     "@sparticuz/chromium": ^110.0.0
     "@supabase/supabase-js": ^2
@@ -1871,7 +1871,7 @@ __metadata:
     puppeteer-core: ^19.6.0
     sanitize-html: ^2.10.0
     turndown: ^7.1.1
-  checksum: 287de06fb04c7340975bd1a87f5a31671521312849840e973fdcb05cc33ef5ace5b26e3b49cf6d0af3f5c71725d812f7e5967d2f3f60fbdf1222e9e6f3eded8b
+  checksum: bbd03c21df1134ed59f52ee0a1961360552263db23be054ece996e19deab823ce71c2f625877bb1354985d9b68a7bbefd85921b232944a17d214a8e3c0696d2f
   languageName: node
   linkType: hard
 
@@ -4985,12 +4985,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@supabase/gotrue-js@npm:^2.12.0":
-  version: 2.14.0
-  resolution: "@supabase/gotrue-js@npm:2.14.0"
+"@supabase/gotrue-js@npm:^2.16.0":
+  version: 2.16.0
+  resolution: "@supabase/gotrue-js@npm:2.16.0"
   dependencies:
     cross-fetch: ^3.1.5
-  checksum: c313cc381b2b1f77baa9cdc814f9d79e986f6223a96b89d1b143e67d25d65600cbb14f0d7f07aebef371d492a00437b0ec15abb2da5c1c0bf91766aeb7ada309
+  checksum: c0c322dc8becaa77fa5a7093288a3227a5f092ec396347de360210970e8970f94dd50a9cb16e3b49aa66053c2b8a5ca5f5afb9b4be44426eac23342f48096bbb
   languageName: node
   linkType: hard
 
@@ -5031,13 +5031,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@supabase/realtime-js@npm:^2.7.0":
-  version: 2.7.0
-  resolution: "@supabase/realtime-js@npm:2.7.0"
+"@supabase/realtime-js@npm:^2.7.1":
+  version: 2.7.1
+  resolution: "@supabase/realtime-js@npm:2.7.1"
   dependencies:
     "@types/phoenix": ^1.5.4
+    "@types/websocket": ^1.0.3
     websocket: ^1.0.34
-  checksum: 24af97482e2a2a6861d3297c9a4122f96cc3114469af4acb45336632996e6984bfd157c969967f57c2585cbd0ab3828d069ae744009a9625fb22a36b17759251
+  checksum: 6a68d00752e54066c8add86524455d669d0db6a411b3ade9781c774f049ca966900b57870859896868c7a54a66aaac9520cf44592b5b59927b70a667c510df8e
   languageName: node
   linkType: hard
 
@@ -5060,16 +5061,16 @@ __metadata:
   linkType: hard
 
 "@supabase/supabase-js@npm:^2":
-  version: 2.11.0
-  resolution: "@supabase/supabase-js@npm:2.11.0"
+  version: 2.12.1
+  resolution: "@supabase/supabase-js@npm:2.12.1"
   dependencies:
     "@supabase/functions-js": ^2.1.0
-    "@supabase/gotrue-js": ^2.12.0
+    "@supabase/gotrue-js": ^2.16.0
     "@supabase/postgrest-js": ^1.1.1
-    "@supabase/realtime-js": ^2.7.0
+    "@supabase/realtime-js": ^2.7.1
     "@supabase/storage-js": ^2.3.1
     cross-fetch: ^3.1.5
-  checksum: c610e35dcf3df36b5a1a271d590b131c5e62a861943a61d165842f3f57e93a2a9522353677d7bdfa5863504943d1f20047d44384c9f54f7a376129082a2256b9
+  checksum: d96287f3e669bb41f568d10e6574941e4db3a05a18af4c7f8968a9208489a7df4ede6fcdb90c3cfeb8202bce4297af204d01c02e6942e5932fb98e08e2bde5c1
   languageName: node
   linkType: hard
 
@@ -5668,6 +5669,15 @@ __metadata:
   version: 7.3.51
   resolution: "@types/video.js@npm:7.3.51"
   checksum: 95b8e75da82b401965bd2b31648f7917495b9f2eda3773e1c50f027ed1f457760731912c71cf2c4e8c4b3087b29844bdcc92577bb56ae5c49b771039f7da819e
+  languageName: node
+  linkType: hard
+
+"@types/websocket@npm:^1.0.3":
+  version: 1.0.5
+  resolution: "@types/websocket@npm:1.0.5"
+  dependencies:
+    "@types/node": "*"
+  checksum: 41c7a620f877a0165ff36e713455d888b7f5df9c51e71b5d0f47994f98cf22ccd339b8c6cfdc6bb417e950d40f405693974d393bd916971490553cc5e9e67a9d
   languageName: node
   linkType: hard
 
@@ -6425,7 +6435,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "application@workspace:."
   dependencies:
-    "@carlosdp/weaver": 0.3.3
+    "@carlosdp/weaver": 0.3.4
     "@chakra-ui/react": ^2.0.0
     "@crxjs/vite-plugin": ^1.0.14
     "@emotion/eslint-plugin": ^11.7.0
@@ -9089,10 +9099,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"devtools-protocol@npm:0.0.1094867":
-  version: 0.0.1094867
-  resolution: "devtools-protocol@npm:0.0.1094867"
-  checksum: 3e4cc4646a84d3b9bb0cbe570819564ed1e65182e950e60c02eac36db2fe9a08be4a2693c7a9f0e1636da8ac81406b238e7a047c9dd1a20c876dcbc6df549b75
+"devtools-protocol@npm:0.0.1107588":
+  version: 0.0.1107588
+  resolution: "devtools-protocol@npm:0.0.1107588"
+  checksum: 9064fd643f39ae0adabb8f425b746899ff24371d89a5047d38752653259e6afcb6bcb2d9759ff727eb5885cfc0f9ba8eb384850a2af00694135622e88080e3e5
   languageName: node
   linkType: hard
 
@@ -11762,18 +11772,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:^9.2.0":
-  version: 9.3.0
-  resolution: "glob@npm:9.3.0"
-  dependencies:
-    fs.realpath: ^1.0.0
-    minimatch: ^7.4.1
-    minipass: ^4.2.4
-    path-scurry: ^1.6.1
-  checksum: 9beb4f1cdc9585412efd991a9786c1ee6816dfd0537494fd552c333fa3d4b041fce5681bce21d14651e41479f60866e10a35a2ce2571fd40b7cf73842ea12192
-  languageName: node
-  linkType: hard
-
 "global-cache-dir@npm:^2.0.0":
   version: 2.0.0
   resolution: "global-cache-dir@npm:2.0.0"
@@ -12265,7 +12263,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"htmlparser2@npm:^8.0.0, htmlparser2@npm:^8.0.1":
+"htmlparser2@npm:^8.0.0":
+  version: 8.0.2
+  resolution: "htmlparser2@npm:8.0.2"
+  dependencies:
+    domelementtype: ^2.3.0
+    domhandler: ^5.0.3
+    domutils: ^3.0.1
+    entities: ^4.4.0
+  checksum: 29167a0f9282f181da8a6d0311b76820c8a59bc9e3c87009e21968264c2987d2723d6fde5a964d4b7b6cba663fca96ffb373c06d8223a85f52a6089ced942700
+  languageName: node
+  linkType: hard
+
+"htmlparser2@npm:^8.0.1":
   version: 8.0.1
   resolution: "htmlparser2@npm:8.0.1"
   dependencies:
@@ -14397,7 +14407,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lru-cache@npm:^7.14.1, lru-cache@npm:^7.7.1":
+"lru-cache@npm:^7.7.1":
   version: 7.18.3
   resolution: "lru-cache@npm:7.18.3"
   checksum: e550d772384709deea3f141af34b6d4fa392e2e418c1498c078de0ee63670f1f46f5eee746e8ef7e69e1c895af0d4224e62ee33e66a543a14763b0f2e74c1356
@@ -14851,15 +14861,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minimatch@npm:^7.4.1":
-  version: 7.4.2
-  resolution: "minimatch@npm:7.4.2"
-  dependencies:
-    brace-expansion: ^2.0.1
-  checksum: 9e341b04e69d5ab03e4206dcb61c8a158e3b8709628bf5e1a4eaa9f3b72c0ba925e24ad959b1f6ce6835caa5a927131d5087fae6836b69e7d99d7d5e63ef0bd8
-  languageName: node
-  linkType: hard
-
 "minimist@npm:^1.2.0, minimist@npm:^1.2.5, minimist@npm:^1.2.6":
   version: 1.2.7
   resolution: "minimist@npm:1.2.7"
@@ -14948,13 +14949,6 @@ __metadata:
   dependencies:
     yallist: ^4.0.0
   checksum: 7a609afbf394abfcf9c48e6c90226f471676c8f2a67f07f6838871afb03215ede431d1433feffe1b855455bcb13ef0eb89162841b9796109d6fed8d89790f381
-  languageName: node
-  linkType: hard
-
-"minipass@npm:^4.0.2, minipass@npm:^4.2.4":
-  version: 4.2.5
-  resolution: "minipass@npm:4.2.5"
-  checksum: 4f9c19af23a5d4a9e7156feefc9110634b178a8cff8f8271af16ec5ebf7e221725a97429952c856f5b17b30c2065ebd24c81722d90c93d2122611d75b952b48f
   languageName: node
   linkType: hard
 
@@ -16464,16 +16458,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"path-scurry@npm:^1.6.1":
-  version: 1.6.1
-  resolution: "path-scurry@npm:1.6.1"
-  dependencies:
-    lru-cache: ^7.14.1
-    minipass: ^4.0.2
-  checksum: 7ba57e823cb7bb879669a4e5e05a283cde1bb9e81b6d806b2609f8d8026d0aef08f4b655b17fc86b21c9c32807851bba95ca715db5ab0605fb13c7a3e9172e42
-  languageName: node
-  linkType: hard
-
 "path-to-regexp@npm:0.1.7":
   version: 0.1.7
   resolution: "path-to-regexp@npm:0.1.7"
@@ -16967,26 +16951,25 @@ __metadata:
   linkType: hard
 
 "puppeteer-core@npm:^19.6.0":
-  version: 19.7.5
-  resolution: "puppeteer-core@npm:19.7.5"
+  version: 19.8.0
+  resolution: "puppeteer-core@npm:19.8.0"
   dependencies:
     chromium-bidi: 0.4.5
     cross-fetch: 3.1.5
     debug: 4.3.4
-    devtools-protocol: 0.0.1094867
+    devtools-protocol: 0.0.1107588
     extract-zip: 2.0.1
     https-proxy-agent: 5.0.1
     proxy-from-env: 1.1.0
-    rimraf: 4.4.0
     tar-fs: 2.1.1
     unbzip2-stream: 1.4.3
-    ws: 8.12.1
+    ws: 8.13.0
   peerDependencies:
     typescript: ">= 4.7.4"
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 5861fbc264a16369689a647ca2e70f6afb7e25913c2e242272f660e0f6cb690b0c1dc123f869a0cb5206460236f794b1a0ed53aea843c65121ef1d02f0dad4ce
+  checksum: a696ae2f8c3a8d0ca25141d22e2a49221d99a27e539d5776dbe153d1f8c00f04686a2cee6df43c3a20eb1b41f4077c339babf59e39fff26d8f34d08d726f1c96
   languageName: node
   linkType: hard
 
@@ -17853,17 +17836,6 @@ __metadata:
   bin:
     rimraf: bin.js
   checksum: 87f4164e396f0171b0a3386cc1877a817f572148ee13a7e113b238e48e8a9f2f31d009a92ec38a591ff1567d9662c6b67fd8818a2dbbaed74bc26a87a2a4a9a0
-  languageName: node
-  linkType: hard
-
-"rimraf@npm:4.4.0":
-  version: 4.4.0
-  resolution: "rimraf@npm:4.4.0"
-  dependencies:
-    glob: ^9.2.0
-  bin:
-    rimraf: dist/cjs/src/bin.js
-  checksum: 0cedaf9d138589d1bb0ab851f05804c6d30827aa66563472b04ab76245f83537e23e7b94f1f79ea6c368c0d84a18fcde6a756fca3a44c967e08792671b3a0a6e
   languageName: node
   linkType: hard
 
@@ -19509,11 +19481,11 @@ __metadata:
   linkType: hard
 
 "turndown@npm:^7.1.1":
-  version: 7.1.1
-  resolution: "turndown@npm:7.1.1"
+  version: 7.1.2
+  resolution: "turndown@npm:7.1.2"
   dependencies:
     domino: ^2.1.6
-  checksum: f2d77632bd69bc93298b619f051dc0c050fabee15188afe874eab713f8ffdcaea89106a536c19db0962a677b5f7177f5aa84b45ef38e06d6e489a49f11abd80d
+  checksum: 4779580c3439d0385e7dd71144bf0f72884cf7fb492bd2f5600ff256fa7c9ae9663ef284507021de90d54d62885fc027d740d578a3e11a1ae83e84a107eedd38
   languageName: node
   linkType: hard
 
@@ -20589,9 +20561,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ws@npm:8.12.1":
-  version: 8.12.1
-  resolution: "ws@npm:8.12.1"
+"ws@npm:8.13.0":
+  version: 8.13.0
+  resolution: "ws@npm:8.13.0"
   peerDependencies:
     bufferutil: ^4.0.1
     utf-8-validate: ">=5.0.2"
@@ -20600,7 +20572,7 @@ __metadata:
       optional: true
     utf-8-validate:
       optional: true
-  checksum: 97301c1c4d838fc81bd413f370f75c12aabe44527b31323b761eab3043a9ecb7e32ffd668548382c9a6a5ad3a1c3a9249608e8338e6b939f2f9540f1e21970b5
+  checksum: 53e991bbf928faf5dc6efac9b8eb9ab6497c69feeb94f963d648b7a3530a720b19ec2e0ec037344257e05a4f35bd9ad04d9de6f289615ffb133282031b18c61c
   languageName: node
   linkType: hard
 
