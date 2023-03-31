@@ -2160,6 +2160,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@chakra-ui/icon@npm:3.0.16":
+  version: 3.0.16
+  resolution: "@chakra-ui/icon@npm:3.0.16"
+  dependencies:
+    "@chakra-ui/shared-utils": 2.0.5
+  peerDependencies:
+    "@chakra-ui/system": ">=2.0.0"
+    react: ">=18"
+  checksum: c0ac66946fe8950e7daaa2462f00f2f7d4ce41878b9f26451c0c94c75887f4ae49f86883c4d7c2728243e5c182b9530e752ec9817c7672e0f852bde8353b2039
+  languageName: node
+  linkType: hard
+
+"@chakra-ui/icons@npm:^2.0.18":
+  version: 2.0.18
+  resolution: "@chakra-ui/icons@npm:2.0.18"
+  dependencies:
+    "@chakra-ui/icon": 3.0.16
+  peerDependencies:
+    "@chakra-ui/system": ">=2.0.0"
+    react: ">=18"
+  checksum: c3967af062f5808486cda6ce72a68e8279882f071c6ff715d4f669257280f8d8685fe8b4efe1a914d227c34446da51acc9ef4cc5ef13801cf453b27e8eabf3e9
+  languageName: node
+  linkType: hard
+
 "@chakra-ui/image@npm:2.0.12":
   version: 2.0.12
   resolution: "@chakra-ui/image@npm:2.0.12"
@@ -2736,6 +2760,13 @@ __metadata:
   version: 2.0.3
   resolution: "@chakra-ui/shared-utils@npm:2.0.3"
   checksum: 08462ef9c92bdc4587efae654a531318d6d57c3f525da06f58fea71c4d21386eda9802fac7ade5cc1bd8dce86804d2658046506e4d8cd336b246bcb4803fae61
+  languageName: node
+  linkType: hard
+
+"@chakra-ui/shared-utils@npm:2.0.5":
+  version: 2.0.5
+  resolution: "@chakra-ui/shared-utils@npm:2.0.5"
+  checksum: 7274b168bf188d1dc098d1f73a60676c6702454bd4dd9919f9b8447205bc1053b4faab6e38702f33cc25694f18bb598c39777f70b44dba221c078c839f42f2bd
   languageName: node
   linkType: hard
 
@@ -5356,6 +5387,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/events@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@types/events@npm:3.0.0"
+  checksum: 9a424c2da210957d5636e0763e8c9fc3aaeee35bf411284ddec62a56a6abe31de9c7c2e713dabdd8a76ff98b47db2bd52f61310be6609641d6234cc842ecbbe3
+  languageName: node
+  linkType: hard
+
 "@types/express-serve-static-core@npm:^4.17.33":
   version: 4.17.33
   resolution: "@types/express-serve-static-core@npm:4.17.33"
@@ -6471,6 +6509,7 @@ __metadata:
   resolution: "application@workspace:."
   dependencies:
     "@carlosdp/weaver": 0.3.4
+    "@chakra-ui/icons": ^2.0.18
     "@chakra-ui/react": ^2.0.0
     "@crxjs/vite-plugin": ^1.0.14
     "@emotion/eslint-plugin": ^11.7.0
@@ -6490,6 +6529,7 @@ __metadata:
     "@testing-library/user-event": ^14.2.0
     "@trivago/prettier-plugin-sort-imports": ^3.2.0
     "@types/chrome": ^0.0.224
+    "@types/events": ^3.0.0
     "@types/ffprobe-static": ^2.0.1
     "@types/fluent-ffmpeg": ^2.1.21
     "@types/react": ^18
@@ -6514,6 +6554,7 @@ __metadata:
     eslint-plugin-react-hooks: ^4.4.0
     eslint-plugin-sonarjs: ^0.13.0
     eslint-plugin-unicorn: ^41.0.1
+    events: ^3.3.0
     ffmpeg-static: ^5.1.0
     ffprobe-static: ^3.1.0
     framer-motion: ^6
@@ -6525,6 +6566,7 @@ __metadata:
     react: ^18
     react-dom: ^18
     react-email: ^1.9.0
+    react-icons: ^4.8.0
     react-query: ^3.39.3
     react-router-dom: ^6
     react-supabase: ^0.2.0
@@ -10688,6 +10730,13 @@ __metadata:
   version: 4.0.7
   resolution: "eventemitter3@npm:4.0.7"
   checksum: 1875311c42fcfe9c707b2712c32664a245629b42bb0a5a84439762dd0fd637fc54d078155ea83c2af9e0323c9ac13687e03cfba79b03af9f40c89b4960099374
+  languageName: node
+  linkType: hard
+
+"events@npm:^3.3.0":
+  version: 3.3.0
+  resolution: "events@npm:3.3.0"
+  checksum: f6f487ad2198aa41d878fa31452f1a3c00958f46e9019286ff4787c84aac329332ab45c9cdc8c445928fc6d7ded294b9e005a7fce9426488518017831b272780
   languageName: node
   linkType: hard
 
@@ -17283,6 +17332,15 @@ __metadata:
     "@types/react":
       optional: true
   checksum: f8db4d64aa5c983d15e80d0fd86d1d649e33744e7b6b70babb08c95f7828e38c2cce7068c0007cf3263eec8b738ebd317d24a613df7f75b472bad6529cf8d6b6
+  languageName: node
+  linkType: hard
+
+"react-icons@npm:^4.8.0":
+  version: 4.8.0
+  resolution: "react-icons@npm:4.8.0"
+  peerDependencies:
+    react: "*"
+  checksum: 4dbba7ad989c295b410e19b2a702722dae44368cb04b6515f9471353552f31ac80bd350f121d5bff79f81504b84039ede44d09e9f035f48bb1032e6eace126c4
   languageName: node
   linkType: hard
 
