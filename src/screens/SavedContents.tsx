@@ -1,4 +1,5 @@
 import { Box, Button, Center, Flex, Heading, Link, Spinner } from '@chakra-ui/react';
+import { Link as RouterLink } from 'react-router-dom';
 
 import { PageContainer } from '../components/PageContainer';
 import { useSavedContents } from '../hooks/useSavedContents';
@@ -11,7 +12,7 @@ export const SavedContents = () => {
       <Flex flexDirection="column" gap="22px">
         <Heading>Saved Content</Heading>
         <Flex gap="12px">
-          <Button as={Link} to="/add">
+          <Button as={RouterLink} to="/add">
             Add
           </Button>
         </Flex>
