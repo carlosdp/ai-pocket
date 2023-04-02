@@ -2,7 +2,7 @@ import { Button, Center, Flex, Heading, Text } from '@chakra-ui/react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { useSupabase } from '../SupabaseProvider';
-import { useSavedContent } from '../hooks/useSavedContent';
+import { useBookmark } from '../hooks/useBookmark';
 
 export const Popup = () => {
   const [url, setUrl] = useState<string | null>(null);
@@ -10,7 +10,7 @@ export const Popup = () => {
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
   const saving = useRef(false);
-  const { data: savedContent, isLoading: savedContentLoading } = useSavedContent(url);
+  const { data: bookmark, isLoading: bookmarkLoading } = useBookmark(url);
 
   useEffect(() => {
     if (!user) {
@@ -48,10 +48,10 @@ export const Popup = () => {
   }, [submit]);
 
   useEffect(() => {
-    if (url && !savedContentLoading && !savedContent) {
+    if (url && !bookmarkLoading && !bookmark) {
       submit(url);
     }
-  }, [savedContent, savedContentLoading, submit, url]);
+  }, [bookmark, bookmarkLoading, submit, url]);
 
   let content = null;
 
@@ -62,13 +62,13 @@ export const Popup = () => {
       </Center>
     ) : (
       <>
-        <Heading>Overload</Heading>
+        <Heading>Briefing</Heading>
         <Center>
-          {loading || savedContentLoading ? (
+          {loading || bookmarkLoading ? (
             <Text fontSize="2xl" fontWeight="bold">
               Saving...
             </Text>
-          ) : saved || !!savedContent ? (
+          ) : saved || !!bookmark ? (
             <Text fontSize="2xl" fontWeight="bold">
               Saved!
             </Text>

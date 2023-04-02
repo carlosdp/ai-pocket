@@ -1,1 +1,0 @@
-create policy "Public story assets" on storage.objects for select using (bucket_id = 'assets');

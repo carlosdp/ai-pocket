@@ -44,13 +44,13 @@ const _handler: BackgroundHandler = async (_event: HandlerEvent, _context: Handl
   //     body: JSON.stringify({ error: 'Must be staff' }),
   //   };
   // }
-  const { data: savedContents, error: contentError } = await client.from('queued_contents').select('user_id');
+  const { data: bookmarks, error: bookmarksError } = await client.from('queued_bookmarks').select('user_id');
 
-  if (contentError) {
-    throw new Error(contentError.message);
+  if (bookmarksError) {
+    throw new Error(bookmarksError.message);
   }
 
-  const userIds = new Set(savedContents.map(content => content.user_id));
+  const userIds = new Set(bookmarks.map(content => content.user_id));
 
   for (const userId of userIds) {
     // eslint-disable-next-line no-console

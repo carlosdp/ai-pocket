@@ -2,13 +2,13 @@ import { useQuery } from 'react-query';
 
 import { useSupabase } from '../SupabaseProvider';
 
-export const useSavedContents = () => {
+export const useBookmarks = () => {
   const { client, user } = useSupabase();
 
   return useQuery({
-    queryKey: ['savedContents'],
+    queryKey: ['bookmarks'],
     queryFn: async () => {
-      const { data, error } = await client.from('saved_contents').select('*').eq('user_id', user?.id);
+      const { data, error } = await client.from('bookmarks').select('*').eq('user_id', user?.id);
 
       if (error) {
         throw new Error(error.message);

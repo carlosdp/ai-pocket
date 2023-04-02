@@ -2,15 +2,15 @@ import { Box, Button, Center, Flex, Heading, Link, Spinner } from '@chakra-ui/re
 import { Link as RouterLink } from 'react-router-dom';
 
 import { PageContainer } from '../components/PageContainer';
-import { useSavedContents } from '../hooks/useSavedContents';
+import { useBookmarks } from '../hooks/useBookmarks';
 
-export const SavedContents = () => {
-  const { data: contents, isLoading } = useSavedContents();
+export const Bookmarks = () => {
+  const { data: contents, isLoading } = useBookmarks();
 
   return (
     <PageContainer>
       <Flex flexDirection="column" gap="22px">
-        <Heading>Saved Content</Heading>
+        <Heading>Bookmarks</Heading>
         <Flex gap="12px">
           <Button as={RouterLink} to="/add">
             Add

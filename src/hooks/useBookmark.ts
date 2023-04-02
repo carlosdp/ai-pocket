@@ -1,15 +1,14 @@
-// react component that uses the useSupabase hook and react-query to fetch a row from the saved_contents table using the "url"
 import { useQuery } from 'react-query';
 
 import { useSupabase } from '../SupabaseProvider';
 
-export const useSavedContent = (url?: string | null) => {
+export const useBookmark = (url?: string | null) => {
   const { client } = useSupabase();
 
   return useQuery({
-    queryKey: ['savedContent', url],
+    queryKey: ['bookmark', url],
     queryFn: async () => {
-      const { data, error } = await client.from('saved_contents').select('*').eq('url', url);
+      const { data, error } = await client.from('bookmarks').select('*').eq('url', url);
 
       if (error) {
         throw new Error(error.message);

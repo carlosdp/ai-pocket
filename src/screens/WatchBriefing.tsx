@@ -6,7 +6,7 @@ import { useSupabase } from '../SupabaseProvider';
 import { PlaybackControl } from '../components/PlaybackControl';
 import { Timeline, Sequence } from '../sequencer';
 
-export const WatchVideo = () => {
+export const WatchBriefing = () => {
   const { id } = useParams<{ id: string }>();
   const { client } = useSupabase();
   const timeline = useRef<Timeline | null>();
@@ -16,12 +16,26 @@ export const WatchVideo = () => {
 
   useEffect(() => {
     (async () => {
-      const { data: savedContents } = await client.from('saved_contents').select('*');
+      const { data: briefing, error: briefingError } = await client.from('briefings').select('*').eq('id', id).single();
 
-      if (savedContents) {
+      if (briefingError) {
+        console.error(briefingError);
+        return;
+      }
+
+      const { data: bookmarks } = await client
+        .from('bookmarks')
+        .select('*')
+        .in(
+          'id',
+          // @ts-ignore
+          briefing.contents.map(c => c.id)
+        );
+
+      if (bookmarks) {
         const sequences = [];
 
-        for (const savedContent of savedContents) {
+        for (const savedContent of bookmarks) {
           if (savedContent.story) {
             // @ts-ignore
             for (const block of savedContent.story.blocks) {

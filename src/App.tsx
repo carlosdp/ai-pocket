@@ -6,9 +6,9 @@ import { useSupabase } from './SupabaseProvider';
 import { AuthenticatedRoutes } from './components/AuthenticatedRoutes';
 import { AddContent } from './screens/AddContent';
 import { Admin } from './screens/Admin';
+import { Bookmarks } from './screens/Bookmarks';
 import { Login } from './screens/Login';
-import { SavedContents } from './screens/SavedContents';
-import { WatchVideo } from './screens/WatchVideo';
+import { WatchBriefing } from './screens/WatchBriefing';
 
 function App() {
   const { client, user } = useSupabase();
@@ -39,9 +39,9 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route element={<AuthenticatedRoutes />}>
-          <Route path="/" element={<SavedContents />} />
+          <Route path="/" element={<Bookmarks />} />
           <Route path="/add" element={<AddContent />} />
-          <Route path="/videos/:id" element={<WatchVideo />} />
+          <Route path="/briefings/:id" element={<WatchBriefing />} />
           <Route path="/admin" element={<Admin />} />
         </Route>
       </Routes>

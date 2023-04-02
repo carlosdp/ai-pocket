@@ -13,7 +13,7 @@ export const Email = ({ videoUrl, screenshotUrl }: EmailProps) => {
     <Html>
       <Img src={screenshotUrl} alt="Video Screenshot" width="168px" height="300px" />
       <Button pX={20} pY={12} href={videoUrl} style={{ background: '#000', color: '#fff' }}>
-        Watch Video
+        Watch Briefing
       </Button>
     </Html>
   );
