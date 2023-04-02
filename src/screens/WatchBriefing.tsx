@@ -1,4 +1,4 @@
-import { Center } from '@chakra-ui/react';
+import { AspectRatio, Box, Center, Flex, Image } from '@chakra-ui/react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -13,6 +13,7 @@ export const WatchBriefing = () => {
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [currentImage, setCurrentImage] = useState<string | null>(null);
 
   useEffect(() => {
     (async () => {
@@ -45,7 +46,14 @@ export const WatchBriefing = () => {
                   .createSignedUrl(block.speech.asset.key, 60 * 60 * 24);
 
                 if (speechUrl) {
-                  sequences.push(new Sequence(speechUrl.signedUrl));
+                  const imageId = block.arguments.url_id;
+                  // @ts-ignore
+                  const imageKey = savedContent.story.assets[imageId].storage.key;
+                  const { data: imageUrl } = await client.storage
+                    .from('assets')
+                    .createSignedUrl(imageKey, 60 * 60 * 24);
+
+                  sequences.push(new Sequence(speechUrl.signedUrl, imageUrl?.signedUrl));
                 }
               }
             }
@@ -65,13 +73,14 @@ export const WatchBriefing = () => {
         await timeline.current.load();
         setDuration(timeline.current.duration);
         const onProgress = ({
-          currentFrameIndex,
+          currentSequence,
           currentTime: newTime,
         }: {
-          currentFrameIndex: number;
+          currentSequence: Sequence;
           currentTime: number;
         }) => {
           setCurrentTime(newTime);
+          setCurrentImage(currentSequence.imageUrl ?? null);
         };
         timeline.current.on('progress', onProgress);
 
@@ -96,13 +105,22 @@ export const WatchBriefing = () => {
 
   return (
     <Center width="100%">
-      <PlaybackControl
-        duration={duration}
-        currentTime={currentTime}
-        onPlayPauseClick={togglePlay}
-        isPlaying={isPlaying}
-        onSeek={onSeek}
-      />
+      <Flex alignItems="center" flexDirection="column" width="100%" maxWidth="1200px">
+        <AspectRatio width="100%" maxWidth="1200px" ratio={16 / 9}>
+          {currentImage ? (
+            <Image alt="Current Image" src={currentImage} />
+          ) : (
+            <Box minWidth="1200px" height="100%" backgroundColor="white" />
+          )}
+        </AspectRatio>
+        <PlaybackControl
+          duration={duration}
+          currentTime={currentTime}
+          onPlayPauseClick={togglePlay}
+          isPlaying={isPlaying}
+          onSeek={onSeek}
+        />
+      </Flex>
     </Center>
   );
 };

@@ -10,8 +10,9 @@ export class Sequence extends EventEmitter {
   private pauseTime: number;
   public isPlaying: boolean;
   public duration: number;
+  public imageUrl?: string;
 
-  constructor(audioUrl: string) {
+  constructor(audioUrl: string, imageUrl?: string) {
     super();
     this.audioUrl = audioUrl;
     this.audioContext = null;
@@ -21,6 +22,7 @@ export class Sequence extends EventEmitter {
     this.pauseTime = 0;
     this.isPlaying = false;
     this.duration = 0;
+    this.imageUrl = imageUrl;
   }
 
   async load(): Promise<void> {
@@ -200,7 +202,8 @@ export class Timeline extends EventEmitter {
     if (this.isPlaying()) {
       this.currentPosition = this.calculateCurrentPosition();
       this.emit('progress', {
-        currentFrameIndex: this.currentSequenceIndex,
+        currentSequenceIndex: this.currentSequenceIndex,
+        currentSequence: this.sequences[this.currentSequenceIndex],
         currentTime: this.currentPosition,
       });
       requestAnimationFrame(() => this.updateCurrentPosition());
