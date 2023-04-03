@@ -1,0 +1,40 @@
+name: Build Chrome Extension
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 16
+
+    - name: Install dependencies
+      run: yarn install
+
+    - name: Build Chrome extension
+      run: yarn build:extension
+
+    - name: Zip Chrome extension
+      run: |
+        mkdir -p artifact
+        cd dist
+        zip -r ../artifact/extension.zip .
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: chrome-extension
+        path: artifact/extension.zip
