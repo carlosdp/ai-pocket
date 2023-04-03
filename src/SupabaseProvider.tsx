@@ -35,6 +35,7 @@ export const SupabaseProvider = ({ client, children }: SupabaseProviderProps) =>
         //   .eq('id', session!.user!.id)
         //   .single()
         //   .then(resu => setUser({ ...session!.user!, ...resu.data }));
+        setUser(session!.user!);
       } else if (event === 'SIGNED_OUT') {
         setUser(null);
       }
