@@ -2,7 +2,7 @@ import { Button, Center, Flex, Heading, Text } from '@chakra-ui/react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { useSupabase } from '../SupabaseProvider';
-import { useBookmark } from '../hooks/useBookmark';
+import { useBookmarkByUrl } from '../hooks/useBookmarkByUrl';
 
 export const Popup = () => {
   const [url, setUrl] = useState<string | null>(null);
@@ -10,7 +10,7 @@ export const Popup = () => {
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
   const saving = useRef(false);
-  const { data: bookmark, isLoading: bookmarkLoading } = useBookmark(url);
+  const { data: bookmark, isLoading: bookmarkLoading } = useBookmarkByUrl(url);
 
   useEffect(() => {
     if (!user) {

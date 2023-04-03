@@ -1,8 +1,10 @@
-import { AspectRatio, Box, Center, Flex, Heading, Image } from '@chakra-ui/react';
+import { AspectRatio, Box, Button, Center, Flex, Heading, Image } from '@chakra-ui/react';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { AiFillCaretLeft } from 'react-icons/ai';
+import { Link, useParams } from 'react-router-dom';
 
 import { useSupabase } from '../SupabaseProvider';
+import { PageContainer } from '../components/PageContainer';
 import { PlaybackControl } from '../components/PlaybackControl';
 import { Timeline, Sequence } from '../sequencer';
 
@@ -108,35 +110,42 @@ export const WatchBriefing = () => {
   }, []);
 
   return (
-    <Center width="100%">
-      <Flex alignItems="center" flexDirection="column" width="100%" maxWidth="1200px">
-        <Heading as="h2" fontSize="lg" fontWeight="bold" paddingBottom="18px">
-          {currentSequence?.story.metadata.title}
-        </Heading>
-        <AspectRatio width="100%" height="60vh" ratio={16 / 9}>
-          <Box alignItems="center" justifyContent="center" display="flex" overflow="hidden">
-            {currentImage ? (
-              <Image
-                width="auto"
-                height="100%"
-                objectFit="cover"
-                objectPosition="center"
-                alt="Current Image"
-                src={currentImage}
-              />
-            ) : (
-              <Box minWidth="1200px" height="100%" backgroundColor="white" />
-            )}
-          </Box>
-        </AspectRatio>
-        <PlaybackControl
-          duration={duration}
-          currentTime={currentTime}
-          onPlayPauseClick={togglePlay}
-          isPlaying={isPlaying}
-          onSeek={onSeek}
-        />
-      </Flex>
-    </Center>
+    <PageContainer>
+      <Box>
+        <Button as={Link} leftIcon={<AiFillCaretLeft />} to="/" variant="ghost">
+          Back
+        </Button>
+      </Box>
+      <Center width="100%">
+        <Flex alignItems="center" flexDirection="column" width="100%" maxWidth="1200px">
+          <Heading as="h2" fontSize="lg" fontWeight="bold" paddingBottom="18px">
+            {currentSequence?.story.metadata.title}
+          </Heading>
+          <AspectRatio width="100%" height="60vh" ratio={16 / 9}>
+            <Box alignItems="center" justifyContent="center" display="flex" overflow="hidden">
+              {currentImage ? (
+                <Image
+                  width="auto"
+                  height="100%"
+                  objectFit="cover"
+                  objectPosition="center"
+                  alt="Current Image"
+                  src={currentImage}
+                />
+              ) : (
+                <Box minWidth="1200px" height="100%" backgroundColor="white" />
+              )}
+            </Box>
+          </AspectRatio>
+          <PlaybackControl
+            duration={duration}
+            currentTime={currentTime}
+            onPlayPauseClick={togglePlay}
+            isPlaying={isPlaying}
+            onSeek={onSeek}
+          />
+        </Flex>
+      </Center>
+    </PageContainer>
   );
 };

@@ -6434,6 +6434,7 @@ __metadata:
     framer-motion: ^6
     hnswlib-node: ^1.4.2
     jsdom: ^19.0.0
+    moment: ^2.29.4
     netlify-cli: ^12.2.10
     postmark: ^3.0.15
     prettier: ^2.6.1
@@ -14642,6 +14643,13 @@ __metadata:
     fast-equals: ^3.0.1
     micro-memoize: ^4.0.11
   checksum: 2f37abed0f882493c943ea728046f3a67ce7c55106cd6befdbf241519317ecf811674d6e53eb3f55087850cc11bc94ac62eae00477e9acbb00a39503c721d0a9
+  languageName: node
+  linkType: hard
+
+"moment@npm:^2.29.4":
+  version: 2.29.4
+  resolution: "moment@npm:2.29.4"
+  checksum: 0ec3f9c2bcba38dc2451b1daed5daded747f17610b92427bebe1d08d48d8b7bdd8d9197500b072d14e326dd0ccf3e326b9e3d07c5895d3d49e39b6803b76e80e
   languageName: node
   linkType: hard
 

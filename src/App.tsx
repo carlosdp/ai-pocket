@@ -7,6 +7,7 @@ import { AuthenticatedRoutes } from './components/AuthenticatedRoutes';
 import { AddContent } from './screens/AddContent';
 import { Admin } from './screens/Admin';
 import { Bookmarks } from './screens/Bookmarks';
+import { Briefings } from './screens/Briefings';
 import { Login } from './screens/Login';
 import { WatchBriefing } from './screens/WatchBriefing';
 
@@ -39,7 +40,8 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route element={<AuthenticatedRoutes />}>
-          <Route path="/" element={<Bookmarks />} />
+          <Route path="/" element={<Briefings />} />
+          <Route path="/bookmarks" element={<Bookmarks />} />
           <Route path="/add" element={<AddContent />} />
           <Route path="/briefings/:id" element={<WatchBriefing />} />
           <Route path="/admin" element={<Admin />} />
