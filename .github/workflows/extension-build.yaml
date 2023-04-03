@@ -39,7 +39,7 @@ jobs:
       run: |
         mkdir -p artifact
         cd dist
-        zip -r ../artifact/extension.zip ./*
+        zip -r ../artifact/extension.zip *
 
     - name: Upload artifact
       uses: actions/upload-artifact@v2
