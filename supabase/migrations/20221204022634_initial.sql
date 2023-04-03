@@ -40,3 +40,28 @@ create view queued_bookmarks as
     );
 
 create view users as select id, email from auth.users;
+
+create or replace function briefing_by_id(id uuid) returns briefings as $$
+  select * from briefings where id = $1
+$$ language sql stable security definer;
+
+create or replace function bookmark_by_id(id uuid) returns bookmarks as $$
+  select * from bookmarks where id = $1
+$$ language sql stable security definer;
+
+-- postgres function to get bookmarks for a briefing id
+create or replace function briefing_bookmarks(briefing_id uuid) returns setof bookmarks as $$
+  select 
+    b.*
+  from 
+    bookmarks b
+    cross join lateral jsonb_array_elements((select briefing.contents from briefing_by_id(briefing_id) as briefing)) as c(content)
+  where 
+    (c.content->>'id')::uuid = b.id
+$$ language sql stable security definer;
+
+alter table bookmarks enable row level security;
+create policy "Bookmarks are private" on bookmarks for select using (user_id = auth.uid());
+
+alter table briefings enable row level security;
+create policy "Briefings are private" on briefings for select using (user_id = auth.uid());

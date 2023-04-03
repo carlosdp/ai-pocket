@@ -7,6 +7,7 @@ import { useSupabase } from '../SupabaseProvider';
 import { PageContainer } from '../components/PageContainer';
 import { PlaybackControl } from '../components/PlaybackControl';
 import { Timeline, Sequence } from '../sequencer';
+import { Database } from '../supabaseTypes';
 
 export const WatchBriefing = () => {
   const { id } = useParams<{ id: string }>();
@@ -20,29 +21,16 @@ export const WatchBriefing = () => {
 
   useEffect(() => {
     (async () => {
-      const { data: briefing, error: briefingError } = await client.from('briefings').select('*').eq('id', id).single();
-
-      if (briefingError) {
-        console.error(briefingError);
-        return;
-      }
-
-      const { data: bookmarks } = await client
-        .from('bookmarks')
-        .select('*')
-        .in(
-          'id',
-          // @ts-ignore
-          briefing.contents.map(c => c.id)
-        );
+      const { data: bookmarks } = await client.rpc('briefing_bookmarks', { briefing_id: id! });
 
       if (bookmarks) {
         const sequences = [];
 
-        for (const savedContent of bookmarks) {
-          if (savedContent.story) {
+        // carlos: type cast necessary cause supabase gen gets this type wrong
+        for (const bookmark of bookmarks as unknown as Database['public']['Tables']['bookmarks']['Row'][]) {
+          if (bookmark.story) {
             // @ts-ignore
-            for (const block of savedContent.story.blocks) {
+            for (const block of bookmark.story.blocks) {
               if (block.speech) {
                 const { data: speechUrl } = await client.storage
                   .from('assets')
@@ -51,12 +39,12 @@ export const WatchBriefing = () => {
                 if (speechUrl) {
                   const imageId = block.arguments.url_id;
                   // @ts-ignore
-                  const imageKey = savedContent.story.assets[imageId].storage.key;
+                  const imageKey = bookmark.story.assets[imageId].storage.key;
                   const { data: imageUrl } = await client.storage
                     .from('assets')
                     .createSignedUrl(imageKey, 60 * 60 * 24);
 
-                  sequences.push(new Sequence(speechUrl.signedUrl, savedContent.story, block, imageUrl?.signedUrl));
+                  sequences.push(new Sequence(speechUrl.signedUrl, bookmark.story, block, imageUrl?.signedUrl));
                 }
               }
             }

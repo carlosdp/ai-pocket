@@ -139,7 +139,50 @@ export interface Database {
       };
     };
     Functions: {
-      [_ in never]: never;
+      bookmark_by_id: {
+        Args: {
+          id: string;
+        };
+        Returns: {
+          created_at: string;
+          deleted_at: string | null;
+          id: string;
+          screenshot_key: string | null;
+          story: Json | null;
+          title: string | null;
+          updated_at: string;
+          url: string;
+          user_id: string;
+        };
+      };
+      briefing_bookmarks: {
+        Args: {
+          briefing_id: string;
+        };
+        Returns: {
+          created_at: string;
+          deleted_at: string | null;
+          id: string;
+          screenshot_key: string | null;
+          story: Json | null;
+          title: string | null;
+          updated_at: string;
+          url: string;
+          user_id: string;
+        }[];
+      };
+      briefing_by_id: {
+        Args: {
+          id: string;
+        };
+        Returns: {
+          contents: Json;
+          created_at: string | null;
+          id: string;
+          updated_at: string | null;
+          user_id: string;
+        };
+      };
     };
     Enums: {
       [_ in never]: never;

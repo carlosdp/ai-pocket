@@ -8,13 +8,13 @@ export const useBookmark = (id?: string | null) => {
   return useQuery({
     queryKey: ['bookmark', id],
     queryFn: async () => {
-      const { data, error } = await client.from('bookmarks').select('*').eq('id', id);
+      const { data, error } = await client.rpc('bookmark_by_id', { id: id! }).single();
 
       if (error) {
         throw new Error(error.message);
       }
 
-      return data.length > 0 ? data[0] : null;
+      return data;
     },
     enabled: !!id,
   });

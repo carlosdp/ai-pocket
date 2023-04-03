@@ -43,7 +43,7 @@ const Bookmark = ({ bookmark }: BookmarkProps) => {
         {screenshotUrl ? (
           <Image width="auto" height="100%" objectFit="cover" objectPosition="center" src={screenshotUrl} />
         ) : (
-          <Skeleton width="200px" height="200px" />
+          <Skeleton width="150px" height="150px" />
         )}
       </Box>
       <LinkOverlay as={Link} fontWeight="bold" href={bookmark.url} noOfLines={2}>
