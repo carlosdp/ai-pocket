@@ -34,9 +34,9 @@ jobs:
       run: yarn build:extension
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        URL: ${{ env.URL }}
-        VITE_SUPBASE_URL: ${{ env.VITE_SUPBASE_URL }}
-        VITE_SUPABASE_ANON_KEY: ${{ env.VITE_SUPABASE_ANON_KEY }}
+        URL: ${{ vars.URL }}
+        VITE_SUPBASE_URL: ${{ vars.VITE_SUPABASE_URL }}
+        VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY }}
 
     - name: Zip Chrome extension
       run: |
