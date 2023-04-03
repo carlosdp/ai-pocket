@@ -183,6 +183,12 @@ export interface Database {
           user_id: string;
         };
       };
+      delete_bookmark_by_url: {
+        Args: {
+          url_to_remove: string;
+        };
+        Returns: undefined;
+      };
     };
     Enums: {
       [_ in never]: never;

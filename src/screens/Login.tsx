@@ -1,15 +1,16 @@
 import { Box, Card } from '@chakra-ui/react';
 import { Auth, ThemeSupa } from '@supabase/auth-ui-react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 
 import { useSupabase } from '../SupabaseProvider';
 import { PageContainer } from '../components/PageContainer';
 
 export const Login = () => {
   const { client, user } = useSupabase();
+  const { state } = useLocation();
 
   if (user) {
-    return <Navigate to="/" replace={true} />;
+    return <Navigate to={state?.forward ?? '/'} replace={true} />;
   }
 
   return (

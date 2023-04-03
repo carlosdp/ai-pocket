@@ -9,6 +9,7 @@ export const Popup = () => {
   const { client, user } = useSupabase();
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [removed, setRemoved] = useState(false);
   const saving = useRef(false);
   const { data: bookmark, isLoading: bookmarkLoading } = useBookmarkByUrl(url);
 
@@ -37,8 +38,18 @@ export const Popup = () => {
     [user]
   );
 
+  const remove = useCallback(async () => {
+    if (url) {
+      const { error } = await client.rpc('delete_bookmark_by_url', { url_to_remove: url });
+      if (error) {
+        console.error(error);
+      }
+      setRemoved(true);
+    }
+  }, [client, url]);
+
   const onLogin = useCallback(() => {
-    chrome.tabs.create({ url: `${import.meta.env.URL}/login` });
+    chrome.tabs.create({ url: `${import.meta.env.URL}/extension/login` });
   }, []);
 
   useEffect(() => {
@@ -62,24 +73,39 @@ export const Popup = () => {
       </Center>
     ) : (
       <>
-        <Heading>Briefing</Heading>
+        <Heading as="h2" fontSize="lg" textAlign="center">
+          Add to Briefing
+        </Heading>
         <Center>
           {loading || bookmarkLoading ? (
             <Text fontSize="2xl" fontWeight="bold">
               Saving...
             </Text>
-          ) : saved || !!bookmark ? (
-            <Text fontSize="2xl" fontWeight="bold">
-              Saved!
-            </Text>
+          ) : (saved || !!bookmark) && !removed ? (
+            <Flex alignItems="center" flexDirection="column" gap="12px">
+              <Text fontSize="2xl" fontWeight="bold">
+                Saved!
+              </Text>
+              <Text>This bookmark will be included in tomorrow's briefing</Text>
+              <Button colorScheme="red" onClick={remove} size="sm" variant="ghost">
+                Remove
+              </Button>
+            </Flex>
+          ) : removed ? (
+            <Flex alignItems="center" flexDirection="column" gap="12px">
+              <Text fontSize="2xl" fontWeight="bold">
+                Removed
+              </Text>
+              <Text>This bookmark will not be included in tomorrow's briefing</Text>
+            </Flex>
           ) : (
-            <Text fontSize="2xl" fontWeight="bold">
-              Not saved
-            </Text>
+            <Flex alignItems="center" flexDirection="column">
+              <Text fontSize="2xl" fontWeight="bold">
+                Error
+              </Text>
+              <Text>Could not save this bookmark</Text>
+            </Flex>
           )}
-        </Center>
-        <Center>
-          <Text fontSize="md">{url}</Text>
         </Center>
       </>
     );

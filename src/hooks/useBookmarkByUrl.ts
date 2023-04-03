@@ -8,7 +8,7 @@ export const useBookmarkByUrl = (url?: string | null) => {
   return useQuery({
     queryKey: ['bookmark_by_url', url],
     queryFn: async () => {
-      const { data, error } = await client.from('bookmarks').select('*').eq('url', url);
+      const { data, error } = await client.from('queued_bookmarks').select('*').eq('url', url);
 
       if (error) {
         throw new Error(error.message);

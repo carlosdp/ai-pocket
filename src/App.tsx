@@ -8,6 +8,7 @@ import { AddContent } from './screens/AddContent';
 import { Admin } from './screens/Admin';
 import { Bookmarks } from './screens/Bookmarks';
 import { Briefings } from './screens/Briefings';
+import { ExtensionLogin } from './screens/ExtensionLogin';
 import { Login } from './screens/Login';
 import { WatchBriefing } from './screens/WatchBriefing';
 
@@ -41,6 +42,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route element={<AuthenticatedRoutes />}>
           <Route path="/" element={<Briefings />} />
+          <Route path="/extension/login" element={<ExtensionLogin />} />
           <Route path="/bookmarks" element={<Bookmarks />} />
           <Route path="/add" element={<AddContent />} />
           <Route path="/briefings/:id" element={<WatchBriefing />} />
