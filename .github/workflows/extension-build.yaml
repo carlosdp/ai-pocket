@@ -38,7 +38,7 @@ jobs:
     - name: Zip Chrome extension
       run: |
         mkdir -p artifact
-        cd dist
+        cd dist/extension
         zip -r ../artifact/extension.zip .
 
     - name: Upload artifact
