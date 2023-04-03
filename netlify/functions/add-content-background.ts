@@ -1,7 +1,7 @@
 /* eslint-disable unicorn/filename-case */
 import {
   Weaver,
-  WebContentAsMarkdown,
+  WebContent,
   UniversalWriter,
   UniversalDirector,
   AzureSpeech,
@@ -114,7 +114,7 @@ const _handler: BackgroundHandler = async (event: HandlerEvent, _context: Handle
   const puppeteerOptions = process.env.NETLIFY_DEV ? { executablePath: '/opt/homebrew/bin/chromium' } : undefined;
 
   const description =
-    "Talk about the web content from the perspective of an interested 3rd party. Just get into the content, don't bother with an introduction or conclusion. Speak in complete sentences, and be concise.";
+    "You are a professional briefer for an important executive. Brief me on the key points about this content. Ignore anything about 'subscribing' or the websites themselves, choose some core topics and concentrate on those. Just get into the content, don't bother with an introduction or conclusion. Brief in complete sentences, and be concise.";
   const sceneTypes = [
     // {
     //   id: 'image',
@@ -130,7 +130,16 @@ const _handler: BackgroundHandler = async (event: HandlerEvent, _context: Handle
 
   // eslint-disable-next-line no-console
   console.log('Grabbing content...');
-  await weaver.pipe(new WebContentAsMarkdown(data.url, puppeteerOptions));
+  await weaver.pipe(new WebContent(data.url, puppeteerOptions));
+
+  await client
+    .from('bookmarks')
+    .update({
+      title: weaver.story.metadata?.title,
+      story: weaver.story,
+    })
+    .eq('id', bookmark.id);
+
   // eslint-disable-next-line no-console
   console.log('Writing content...');
   await weaver.pipe(new UniversalWriter(description));
@@ -152,7 +161,14 @@ const _handler: BackgroundHandler = async (event: HandlerEvent, _context: Handle
   console.log('Generating speech...');
   await weaver.pipe(new AzureSpeech(process.env.AZURE_SPEECH_KEY!));
 
-  await client.from('bookmarks').update({ story: weaver.story }).eq('id', bookmark.id);
+  const firstImageKey = weaver.story.blocks[0]?.arguments?.url_id;
+  let screenshotKey: string | null = null;
+
+  if (firstImageKey) {
+    screenshotKey = weaver.story.assets?.[firstImageKey]?.storage?.key ?? null;
+  }
+
+  await client.from('bookmarks').update({ screenshot_key: screenshotKey, story: weaver.story }).eq('id', bookmark.id);
 };
 
 const handler = Sentry.AWSLambda.wrapHandler(_handler);

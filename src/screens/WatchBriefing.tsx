@@ -1,4 +1,4 @@
-import { AspectRatio, Box, Center, Flex, Image } from '@chakra-ui/react';
+import { AspectRatio, Box, Center, Flex, Heading, Image } from '@chakra-ui/react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -14,6 +14,7 @@ export const WatchBriefing = () => {
   const [currentTime, setCurrentTime] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentImage, setCurrentImage] = useState<string | null>(null);
+  const [currentSequence, setCurrentSequence] = useState<Sequence | null>(null);
 
   useEffect(() => {
     (async () => {
@@ -53,7 +54,7 @@ export const WatchBriefing = () => {
                     .from('assets')
                     .createSignedUrl(imageKey, 60 * 60 * 24);
 
-                  sequences.push(new Sequence(speechUrl.signedUrl, imageUrl?.signedUrl));
+                  sequences.push(new Sequence(speechUrl.signedUrl, savedContent.story, block, imageUrl?.signedUrl));
                 }
               }
             }
@@ -61,6 +62,8 @@ export const WatchBriefing = () => {
         }
 
         timeline.current = new Timeline(sequences);
+        setCurrentSequence(sequences[0]);
+        setCurrentImage(sequences[0].imageUrl ?? null);
       }
     })();
   }, [id, client]);
@@ -73,14 +76,15 @@ export const WatchBriefing = () => {
         await timeline.current.load();
         setDuration(timeline.current.duration);
         const onProgress = ({
-          currentSequence,
+          currentSequence: newCurrentSequence,
           currentTime: newTime,
         }: {
           currentSequence: Sequence;
           currentTime: number;
         }) => {
           setCurrentTime(newTime);
-          setCurrentImage(currentSequence.imageUrl ?? null);
+          setCurrentImage(newCurrentSequence.imageUrl ?? null);
+          setCurrentSequence(newCurrentSequence);
         };
         timeline.current.on('progress', onProgress);
 
@@ -106,12 +110,24 @@ export const WatchBriefing = () => {
   return (
     <Center width="100%">
       <Flex alignItems="center" flexDirection="column" width="100%" maxWidth="1200px">
-        <AspectRatio width="100%" maxWidth="1200px" ratio={16 / 9}>
-          {currentImage ? (
-            <Image alt="Current Image" src={currentImage} />
-          ) : (
-            <Box minWidth="1200px" height="100%" backgroundColor="white" />
-          )}
+        <Heading as="h2" fontSize="lg" fontWeight="bold" paddingBottom="18px">
+          {currentSequence?.story.metadata.title}
+        </Heading>
+        <AspectRatio width="100%" height="60vh" ratio={16 / 9}>
+          <Box alignItems="center" justifyContent="center" display="flex" overflow="hidden">
+            {currentImage ? (
+              <Image
+                width="auto"
+                height="100%"
+                objectFit="cover"
+                objectPosition="center"
+                alt="Current Image"
+                src={currentImage}
+              />
+            ) : (
+              <Box minWidth="1200px" height="100%" backgroundColor="white" />
+            )}
+          </Box>
         </AspectRatio>
         <PlaybackControl
           duration={duration}

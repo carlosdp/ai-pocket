@@ -2,6 +2,8 @@ create table bookmarks (
   id uuid primary key default gen_random_uuid(),
   user_id uuid references auth.users(id) not null,
   url varchar not null,
+  title varchar,
+  screenshot_key varchar,
   story jsonb,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),

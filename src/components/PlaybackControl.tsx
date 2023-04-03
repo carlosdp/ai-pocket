@@ -46,7 +46,7 @@ export const PlaybackControl = ({
 
   return (
     <Box alignItems="center" display="flex">
-      <Button marginRight={4} colorScheme="teal" onClick={handlePlayPauseClick} variant="solid">
+      <Button marginRight={4} onClick={handlePlayPauseClick} variant="solid">
         {isPlaying ? <AiFillPauseCircle size="18px" /> : <AiFillPlayCircle size="18px" />}
       </Button>
       <Slider

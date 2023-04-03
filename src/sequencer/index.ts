@@ -10,9 +10,14 @@ export class Sequence extends EventEmitter {
   private pauseTime: number;
   public isPlaying: boolean;
   public duration: number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  public story: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  public storyBlock: any;
   public imageUrl?: string;
 
-  constructor(audioUrl: string, imageUrl?: string) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  constructor(audioUrl: string, story: any, block: any, imageUrl?: string) {
     super();
     this.audioUrl = audioUrl;
     this.audioContext = null;
@@ -22,6 +27,8 @@ export class Sequence extends EventEmitter {
     this.pauseTime = 0;
     this.isPlaying = false;
     this.duration = 0;
+    this.story = story;
+    this.storyBlock = block;
     this.imageUrl = imageUrl;
   }
 
