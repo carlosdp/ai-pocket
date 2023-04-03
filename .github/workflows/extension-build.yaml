@@ -40,12 +40,11 @@ jobs:
 
     - name: Zip Chrome extension
       run: |
-        mkdir -p artifact
         cd dist
-        zip -r ../artifact/extension.zip *
+        zip -r ../extension.zip *
 
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
         name: chrome-extension
-        path: artifact/extension.zip
+        path: ./extension.zip
