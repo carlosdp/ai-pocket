@@ -3,4 +3,4 @@
   envFiles = [".env.netlify"]
 
 [functions]
-  external_node_modules = ["@sparticuz/chromium", "canvas", "ffmpeg-static", "ffprobe-static"]
+  external_node_modules = ["@sparticuz/chromium"]

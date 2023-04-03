@@ -11,7 +11,6 @@ import {
   Story,
 } from '@carlosdp/weaver';
 import { WeaverContext } from '@carlosdp/weaver/dist/src/context';
-import { PipelineOperator } from '@carlosdp/weaver/dist/src/pipelineOperator';
 import { HandlerEvent, HandlerContext, BackgroundHandler } from '@netlify/functions';
 import * as Sentry from '@sentry/serverless';
 import { createClient } from '@supabase/supabase-js';
@@ -29,7 +28,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-export class SimpleChoreographer extends PipelineOperator {
+export class SimpleChoreographer {
   name = 'SimpleChoreographer';
   description = 'Just chooses the screenshot of the webpage';
 
