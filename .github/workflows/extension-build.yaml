@@ -35,7 +35,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         URL: ${{ vars.URL }}
-        VITE_SUPBASE_URL: ${{ vars.VITE_SUPABASE_URL }}
+        VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
         VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY }}
 
     - name: Zip Chrome extension
