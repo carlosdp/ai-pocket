@@ -39,9 +39,9 @@ jobs:
         VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY }}
 
     - name: Zip Chrome extension
-      run: |
-        cd dist
-        zip -r -X -y ../extension.zip *
+      uses: edgarrc/action-7z@v1
+      with:
+        args: 7z a -tzip ./extension.zip dist/*
 
     - name: Upload artifact
       uses: actions/upload-artifact@v2
