@@ -83,18 +83,26 @@ const _handler: BackgroundHandler = async (event: HandlerEvent, _context: Handle
   }
 
   if (user.email && process.env.POSTMARK_API_KEY) {
-    const { data: screenshot, error: screenshotError } = await client.storage
-      .from('assets')
-      .createSignedUrl(`${data.user_id}/briefings/${briefing.id}.png`, 60 * 60 * 24 * 365);
+    const screenshotKey = savedContents.find(
+      content => content.story !== null && content.screenshot_key !== null
+    )?.screenshot_key;
 
-    if (screenshotError) {
-      throw new Error(screenshotError.message);
+    let screenshotUrl = '';
+
+    if (screenshotKey) {
+      const { data: screenshot, error: screenshotError } = await client.storage
+        .from('assets')
+        .createSignedUrl(screenshotKey, 60 * 60 * 24 * 365);
+
+      if (screenshotError) {
+        throw new Error(screenshotError.message);
+      }
+
+      screenshotUrl = screenshot.signedUrl;
     }
 
     // turn screenshot Blob into data URL using Buffer
-    const emailHtml = render(
-      Email({ videoUrl: `${process.env.URL}/briefings/${briefing.id}`, screenshotUrl: screenshot.signedUrl })
-    );
+    const emailHtml = render(Email({ videoUrl: `${process.env.URL}/briefings/${briefing.id}`, screenshotUrl }));
 
     const postmarkClient = new ServerClient(process.env.POSTMARK_API_KEY);
 
