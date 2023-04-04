@@ -1855,9 +1855,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@carlosdp/weaver@npm:0.3.5":
-  version: 0.3.5
-  resolution: "@carlosdp/weaver@npm:0.3.5::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40carlosdp%2Fweaver%2F0.3.5%2F48526ab1fc420ddbacd41781f2fd7674c329d8bd"
+"@carlosdp/weaver@npm:0.3.6":
+  version: 0.3.6
+  resolution: "@carlosdp/weaver@npm:0.3.6::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40carlosdp%2Fweaver%2F0.3.6%2Fa7e4dad0858b09ab8a89ee92dd3f38a2e8c87a7e"
   dependencies:
     "@sparticuz/chromium": ^110.0.0
     "@supabase/supabase-js": ^2
@@ -1869,7 +1869,7 @@ __metadata:
     puppeteer-core: ^19.6.0
     sanitize-html: ^2.10.0
     turndown: ^7.1.1
-  checksum: ab3c08261ede43972a650f3373e6a8bd54c373b6d1f4e33034d5625254b86c97a76c2b42b5939d930b0ebb5344eb65a009aec2de2ac127d531b27b78f3d2582b
+  checksum: bd73b509a6060f6a74abfd03a14fbd0a5387a06f60acbf4a3f460cf05652e15fc16c4b237508c54496bd63dd0ea2b0a618603b057de06773613f3ffbfb4c3238
   languageName: node
   linkType: hard
 
@@ -6444,7 +6444,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "application@workspace:."
   dependencies:
-    "@carlosdp/weaver": 0.3.5
+    "@carlosdp/weaver": 0.3.6
     "@chakra-ui/icons": ^2.0.18
     "@chakra-ui/react": ^2.0.0
     "@crxjs/vite-plugin": ^1.0.14
