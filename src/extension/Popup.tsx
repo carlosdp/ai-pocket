@@ -4,6 +4,8 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useSupabase } from '../SupabaseProvider';
 import { useBookmarkByUrl } from '../hooks/useBookmarkByUrl';
 
+const OUR_HOSTS = new Set(['localhost', 'briefer.carlosdp.xyz']);
+
 export const Popup = () => {
   const [url, setUrl] = useState<string | null>(null);
   const { client, user } = useSupabase();
@@ -60,6 +62,9 @@ export const Popup = () => {
 
   useEffect(() => {
     if (url && !bookmarkLoading && !bookmark) {
+      if (OUR_HOSTS.has(new URL(url).host)) {
+        return;
+      }
       submit(url);
     }
   }, [bookmark, bookmarkLoading, submit, url]);
