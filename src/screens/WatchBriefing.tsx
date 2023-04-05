@@ -38,13 +38,18 @@ export const WatchBriefing = () => {
 
                 if (speechUrl) {
                   const imageId = block.arguments.url_id;
-                  // @ts-ignore
-                  const imageKey = bookmark.story.assets[imageId].storage.key;
-                  const { data: imageUrl } = await client.storage
-                    .from('assets')
-                    .createSignedUrl(imageKey, 60 * 60 * 24);
+                  let imageUrl: string | undefined = undefined;
 
-                  sequences.push(new Sequence(speechUrl.signedUrl, bookmark.story, block, imageUrl?.signedUrl));
+                  if (imageId) {
+                    // @ts-ignore
+                    const imageKey = bookmark.story.assets[imageId].storage.key;
+                    const { data: imageData } = await client.storage
+                      .from('assets')
+                      .createSignedUrl(imageKey, 60 * 60 * 24);
+                    imageUrl = imageData?.signedUrl;
+                  }
+
+                  sequences.push(new Sequence(speechUrl.signedUrl, bookmark.story, block, imageUrl));
                 }
               }
             }
