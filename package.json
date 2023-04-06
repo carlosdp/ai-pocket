@@ -26,6 +26,7 @@
     "@react-email/html": "^0.0.4",
     "@react-email/img": "^0.0.5",
     "@react-email/render": "^0.0.6",
+    "@sentry/react": "^7.47.0",
     "@sentry/serverless": "^7.43.0",
     "@sparticuz/chromium": "^110.0.0",
     "@supabase/auth-ui-react": "^0.2.6",
