@@ -6,7 +6,7 @@ export const theme = extendTheme(
       initialColorMode: 'system',
     },
   },
-  withDefaultColorScheme({ colorScheme: 'blue' }),
+  withDefaultColorScheme({ colorScheme: 'green' }),
   {
     components: {
       PageContainer: defineStyleConfig({

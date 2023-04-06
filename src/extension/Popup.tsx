@@ -1,4 +1,4 @@
-import { Button, Center, Flex, Heading, Text } from '@chakra-ui/react';
+import { Button, Center, Flex, Heading, Spinner, Text } from '@chakra-ui/react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { useSupabase } from '../SupabaseProvider';
@@ -7,6 +7,7 @@ import { useBookmarkByUrl } from '../hooks/useBookmarkByUrl';
 const OUR_HOSTS = new Set(['localhost', 'briefer.carlosdp.xyz']);
 
 export const Popup = () => {
+  const [title, setTitle] = useState<string | null>(null);
   const [url, setUrl] = useState<string | null>(null);
   const { client, user } = useSupabase();
   const [loading, setLoading] = useState(false);
@@ -56,7 +57,12 @@ export const Popup = () => {
 
   useEffect(() => {
     chrome.tabs.query({ currentWindow: true, active: true }, tabs => {
-      setUrl(tabs[0].url ?? null);
+      const tab = tabs[0];
+
+      if (tab) {
+        setTitle(tab.title ?? null);
+        setUrl(tab.url ?? null);
+      }
     });
   }, [submit]);
 
@@ -73,25 +79,33 @@ export const Popup = () => {
 
   if (user !== undefined) {
     content = !user ? (
-      <Center>
-        <Button onClick={onLogin}>Login</Button>
-      </Center>
+      <Flex alignItems="center" justifyContent="center">
+        <Text fontSize="xl">You must login before you can save bookmarks</Text>
+        <Button colorScheme="white" onClick={onLogin} variant="ghost">
+          Login
+        </Button>
+      </Flex>
     ) : (
       <>
         <Heading as="h2" fontSize="lg" textAlign="center">
-          Add to Briefing
+          {title}
         </Heading>
         <Center>
           {loading || bookmarkLoading ? (
-            <Text fontSize="2xl" fontWeight="bold">
-              Saving...
-            </Text>
+            <>
+              <Spinner color="white" />
+              <Text fontSize="2xl" fontWeight="bold">
+                Saving...
+              </Text>
+            </>
           ) : (saved || !!bookmark) && !removed ? (
             <Flex alignItems="center" flexDirection="column" gap="12px">
               <Text fontSize="2xl" fontWeight="bold">
                 Saved!
               </Text>
-              <Text>This bookmark will be included in tomorrow's briefing</Text>
+              <Text fontSize="md" textAlign="center">
+                This bookmark will be included in tomorrow's briefing
+              </Text>
               <Button colorScheme="red" onClick={remove} size="sm" variant="ghost">
                 Remove
               </Button>
@@ -117,7 +131,15 @@ export const Popup = () => {
   }
 
   return (
-    <Flex flexDirection="column" gap="22px" minWidth="400px" minHeight="200px" padding="16px">
+    <Flex
+      flexDirection="column"
+      gap="22px"
+      width="350px"
+      height="600px"
+      padding="16px"
+      color="white"
+      background="green.300"
+    >
       {content}
     </Flex>
   );
