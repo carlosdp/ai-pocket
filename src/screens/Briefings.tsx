@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { useSupabase } from '../SupabaseProvider';
 import { PageContainer } from '../components/PageContainer';
+import { QueuedBookmarks } from '../components/QueuedBookmarks';
 import { useAsyncMemo } from '../hooks/useAsyncMemo';
 import { useBookmark } from '../hooks/useBookmark';
 import { useBriefings } from '../hooks/useBriefings';
@@ -51,6 +52,7 @@ export const Briefings = () => {
   return (
     <PageContainer>
       <Flex flexDirection="column" gap="22px">
+        <QueuedBookmarks />
         <Heading>Briefings</Heading>
         <Box>
           {isLoading ? (
