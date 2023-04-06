@@ -22,7 +22,7 @@ function App() {
         const sessionRes = await client.auth.getSession();
         const session = sessionRes.data.session;
 
-        if (session && chrome.runtime) {
+        if (session && chrome !== undefined && chrome.runtime) {
           chrome.runtime.sendMessage(import.meta.env.VITE_EXTENSION_ID, {
             session: { access_token: session.access_token, refresh_token: session.refresh_token },
           });
