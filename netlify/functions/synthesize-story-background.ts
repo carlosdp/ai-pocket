@@ -108,7 +108,7 @@ const _handler: BackgroundHandler = async (event: HandlerEvent, _context: Handle
 
     await postmarkClient.sendEmail({
       To: user.email,
-      From: 'Briefer <videos@briefing.carlosdp.xyz>',
+      From: 'Pouch <briefings@pouch.website>',
       Subject: 'Your Daily Briefing',
       HtmlBody: emailHtml,
     });

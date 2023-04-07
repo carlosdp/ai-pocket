@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useSupabase } from '../SupabaseProvider';
 import { useBookmarkByUrl } from '../hooks/useBookmarkByUrl';
 
-const OUR_HOSTS = new Set(['localhost', 'briefer.carlosdp.xyz']);
+const OUR_HOSTS = new Set(['localhost', 'pouch.website', 'app.pouch.website']);
 
 export type SaveBookmarkProps = {
   tab: chrome.tabs.Tab;
