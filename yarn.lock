@@ -1855,9 +1855,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@carlosdp/weaver@npm:0.3.9":
-  version: 0.3.9
-  resolution: "@carlosdp/weaver@npm:0.3.9::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40carlosdp%2Fweaver%2F0.3.9%2Fd251d3f1acdb0d3f79590b50105790f134b31a76"
+"@carlosdp/weaver@npm:0.3.10":
+  version: 0.3.10
+  resolution: "@carlosdp/weaver@npm:0.3.10::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40carlosdp%2Fweaver%2F0.3.10%2F1aa144a48ef71ff3a90ec897002c2edf9bd39a5b"
   dependencies:
     "@sparticuz/chromium": ^110.0.0
     "@supabase/supabase-js": ^2
@@ -1869,7 +1869,7 @@ __metadata:
     puppeteer-core: ^19.6.0
     sanitize-html: ^2.10.0
     turndown: ^7.1.1
-  checksum: 2303230a6be8d4de0e360b07770feb2b4ada70842846a50854c4194b468bbc0104abf4a299ee8197e8e90e4f0e5cf33acbacbfaad4827fa82f64ab72beab9979
+  checksum: d9d5ee14651db0168bce6ceba6cf15c1dd3770ab3e811584837ca4d552572ed935908df0a31eeb248fa27a18d26d053894d7174a085c92a26ac071bdd7a59412
   languageName: node
   linkType: hard
 
@@ -4723,6 +4723,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@puppeteer/browsers@npm:0.4.0":
+  version: 0.4.0
+  resolution: "@puppeteer/browsers@npm:0.4.0"
+  dependencies:
+    debug: 4.3.4
+    extract-zip: 2.0.1
+    https-proxy-agent: 5.0.1
+    progress: 2.0.3
+    proxy-from-env: 1.1.0
+    tar-fs: 2.1.1
+    unbzip2-stream: 1.4.3
+    yargs: 17.7.1
+  peerDependencies:
+    typescript: ">= 4.7.4"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  bin:
+    browsers: lib/cjs/main-cli.js
+  checksum: d21fce3daa739f156a2539cc1893adad7572c4253ff5a9e3785745c614ff30306b69f327c4e21c50c96cffbaa4d858037e4e72fb291065bc83caf0997f186a05
+  languageName: node
+  linkType: hard
+
 "@react-email/button@npm:^0.0.7":
   version: 0.0.7
   resolution: "@react-email/button@npm:0.0.7"
@@ -5074,12 +5097,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@supabase/gotrue-js@npm:^2.16.0":
-  version: 2.18.1
-  resolution: "@supabase/gotrue-js@npm:2.18.1"
+"@supabase/gotrue-js@npm:^2.18.1":
+  version: 2.20.1
+  resolution: "@supabase/gotrue-js@npm:2.20.1"
   dependencies:
     cross-fetch: ^3.1.5
-  checksum: c02e333b778f477cc652472c662c01ce09296743b863b10a8a850cfdbeaa4d240d400ede049ff880dc55e7823e124f2ef860f3be60e5c4aadc4b0332ee5bca12
+  checksum: ad92d6630237da9ab9cb6b73d47cc13fbac15622c5f7d13f9ccec349846669309ac74ee406ea8c8beccc4a944c59e55c13ac37d277fd87f38953a35893f5d482
   languageName: node
   linkType: hard
 
@@ -5141,25 +5164,25 @@ __metadata:
   linkType: hard
 
 "@supabase/storage-js@npm:^2.3.1":
-  version: 2.3.1
-  resolution: "@supabase/storage-js@npm:2.3.1"
+  version: 2.4.0
+  resolution: "@supabase/storage-js@npm:2.4.0"
   dependencies:
     cross-fetch: ^3.1.5
-  checksum: b502bc0735f06df091b40839e37f7a795563c1a6be918bbd7a2dab45299d625bde825dd24e396c8dca08eaa3bf247c5159dd5018277cc9fb90310c62cc88148c
+  checksum: 10b6ea390a976e2fdad8e39ac227bf1a14f59e26b720bcc4d7f3b792a170ffb702298455dfe4e8fb7e308733de0222e5bb4a012fe5eb9b3fd08a56a07a5d2852
   languageName: node
   linkType: hard
 
 "@supabase/supabase-js@npm:^2":
-  version: 2.13.1
-  resolution: "@supabase/supabase-js@npm:2.13.1"
+  version: 2.14.0
+  resolution: "@supabase/supabase-js@npm:2.14.0"
   dependencies:
     "@supabase/functions-js": ^2.1.0
-    "@supabase/gotrue-js": ^2.16.0
+    "@supabase/gotrue-js": ^2.18.1
     "@supabase/postgrest-js": ^1.1.1
     "@supabase/realtime-js": ^2.7.1
     "@supabase/storage-js": ^2.3.1
     cross-fetch: ^3.1.5
-  checksum: 059ff0e15d85668fd5a7ba2fb4f3d89df98e9eeca44991a81e3d3735e55d8c8d75194cc02b560eff93184f34ea2f33dbe818a88d7000f8e2ba64d1a2273c39e9
+  checksum: 23269e92ac49d54316f2882ee8042f152080f0e056dba098af1812c264f0277fb127c8467d706eab3e2fb75974c9a8eed0ff2a9aa9424d6df226ea4270d0cc77
   languageName: node
   linkType: hard
 
@@ -6524,7 +6547,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "application@workspace:."
   dependencies:
-    "@carlosdp/weaver": 0.3.9
+    "@carlosdp/weaver": 0.3.10
     "@chakra-ui/icons": ^2.0.18
     "@chakra-ui/react": ^2.0.0
     "@crxjs/vite-plugin": ^1.0.14
@@ -6993,7 +7016,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.2.3, axios@npm:^1.3.4":
+"axios@npm:^1.2.3":
+  version: 1.3.5
+  resolution: "axios@npm:1.3.5"
+  dependencies:
+    follow-redirects: ^1.15.0
+    form-data: ^4.0.0
+    proxy-from-env: ^1.1.0
+  checksum: 4d6bcf933b1cdff86d4993752aaeeeedc4a7f7a4b1c942847f6884bb13fc6106610ff826b076acf0b08d8ced55dee9344bb9a11f3624c3e70ab1da1a40bb5506
+  languageName: node
+  linkType: hard
+
+"axios@npm:^1.3.4":
   version: 1.3.4
   resolution: "axios@npm:1.3.4"
   dependencies:
@@ -14675,8 +14709,8 @@ __metadata:
   linkType: hard
 
 "microsoft-cognitiveservices-speech-sdk@npm:^1.24.1":
-  version: 1.26.0
-  resolution: "microsoft-cognitiveservices-speech-sdk@npm:1.26.0"
+  version: 1.27.0
+  resolution: "microsoft-cognitiveservices-speech-sdk@npm:1.27.0"
   dependencies:
     agent-base: ^6.0.1
     asn1.js-rfc2560: ^5.0.1
@@ -14687,7 +14721,7 @@ __metadata:
     simple-lru-cache: 0.0.2
     uuid: ^9.0.0
     ws: ^7.5.6
-  checksum: 3c28958a9c7ae1107bb949aac99ee464b873f3a1e4c810d1e3d1232c48cbe9ecf9ccc73190d1b98aa3640385887797c2529229e8fc7047f5b94dd0e976750f33
+  checksum: 4e95b959389b9c0862ab8b2db7baaa29f932e816ee095e19cb0dc2aa04a66e604e800b06aab66f7fc7c4ad9e067fe3e9994c3511ebb1d879f285fa301eaeb9d9
   languageName: node
   linkType: hard
 
@@ -16700,6 +16734,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"progress@npm:2.0.3":
+  version: 2.0.3
+  resolution: "progress@npm:2.0.3"
+  checksum: f67403fe7b34912148d9252cb7481266a354bd99ce82c835f79070643bb3c6583d10dbcfda4d41e04bbc1d8437e9af0fb1e1f2135727878f5308682a579429b7
+  languageName: node
+  linkType: hard
+
 "promise-inflight@npm:^1.0.1":
   version: 1.0.1
   resolution: "promise-inflight@npm:1.0.1"
@@ -16826,9 +16867,10 @@ __metadata:
   linkType: hard
 
 "puppeteer-core@npm:^19.6.0":
-  version: 19.8.3
-  resolution: "puppeteer-core@npm:19.8.3"
+  version: 19.8.5
+  resolution: "puppeteer-core@npm:19.8.5"
   dependencies:
+    "@puppeteer/browsers": 0.4.0
     chromium-bidi: 0.4.6
     cross-fetch: 3.1.5
     debug: 4.3.4
@@ -16844,7 +16886,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 97f706851c9d432eb31d19f8bf05060ee5ecfe43d816e5a67a8a761dc85ffb28324e4292163717e8520093ebc4b3a9afdb6d7f447c93a37158274d97bcb40201
+  checksum: 6bad7a7279403be6b6799876e2ebafb3713d965ec4befe78207b19e05c4a06ff296b90f7f04007f32a80a41a1bf96930a86524cba27915f0b76112261d30833f
   languageName: node
   linkType: hard
 
@@ -20513,6 +20555,21 @@ __metadata:
   version: 21.1.1
   resolution: "yargs-parser@npm:21.1.1"
   checksum: ed2d96a616a9e3e1cc7d204c62ecc61f7aaab633dcbfab2c6df50f7f87b393993fe6640d017759fe112d0cb1e0119f2b4150a87305cc873fd90831c6a58ccf1c
+  languageName: node
+  linkType: hard
+
+"yargs@npm:17.7.1":
+  version: 17.7.1
+  resolution: "yargs@npm:17.7.1"
+  dependencies:
+    cliui: ^8.0.1
+    escalade: ^3.1.1
+    get-caller-file: ^2.0.5
+    require-directory: ^2.1.1
+    string-width: ^4.2.3
+    y18n: ^5.0.5
+    yargs-parser: ^21.1.1
+  checksum: 3d8a43c336a4942bc68080768664aca85c7bd406f018bad362fd255c41c8f4e650277f42fd65d543fce99e084124ddafee7bbfc1a5c6a8fda4cec78609dcf8d4
   languageName: node
   linkType: hard
 

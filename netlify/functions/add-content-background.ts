@@ -158,7 +158,9 @@ const _handler: BackgroundHandler = async (event: HandlerEvent, _context: Handle
   );
   // eslint-disable-next-line no-console
   console.log('Generating speech...');
-  await weaver.pipe(new AzureSpeech(process.env.AZURE_SPEECH_KEY!));
+  await weaver.pipe(
+    new AzureSpeech(process.env.AZURE_SPEECH_KEY!, undefined, { name: 'en-US-AriaNeural', style: 'newscast-casual' })
+  );
 
   const firstImageKey = weaver.story.blocks[0]?.arguments?.url_id;
   let screenshotKey: string | null = null;
