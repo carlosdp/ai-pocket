@@ -7,13 +7,11 @@ export const ExtensionLogin = () => {
   }, []);
 
   return (
-    <Flex alignItems="center" justifyContent="center" height="100%">
-      <Text fontSize="xl" fontWeight="bold">
+    <Flex alignItems="center" justifyContent="center" flexDirection="column" gap="22px" height="100%">
+      <Text fontSize="xl" fontWeight="bold" textAlign="center">
         You must login before you can save bookmarks
       </Text>
-      <Button colorScheme="white" onClick={onLogin} variant="ghost">
-        Login
-      </Button>
+      <Button onClick={onLogin}>Login</Button>
     </Flex>
   );
 };

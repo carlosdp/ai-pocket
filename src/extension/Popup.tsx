@@ -2,7 +2,7 @@ import { Center, Flex, Spinner } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
 import { useSupabase } from '../SupabaseProvider';
-import { ExtensionLogin } from './ExtensionLogin';
+import { ExtensionLogin } from './LoginRequest';
 import { SaveBookmark } from './SaveBookmark';
 
 export const Popup = () => {
@@ -27,7 +27,7 @@ export const Popup = () => {
 
   let content = null;
 
-  if (!tab) {
+  if (!tab || user === undefined) {
     return (
       <Center>
         <Spinner size="xl" />
@@ -35,12 +35,18 @@ export const Popup = () => {
     );
   }
 
-  if (user !== undefined) {
-    content = !user ? <ExtensionLogin /> : <SaveBookmark tab={tab} />;
-  }
+  content = !user ? <ExtensionLogin /> : <SaveBookmark tab={tab} />;
 
   return (
-    <Flex gap="22px" width="350px" height="600px" padding="16px" color="white" background="green.400">
+    <Flex
+      flexDirection="column"
+      gap="22px"
+      width="350px"
+      height="600px"
+      padding="16px"
+      color="white"
+      background="green.400"
+    >
       {content}
     </Flex>
   );
