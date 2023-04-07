@@ -6,7 +6,7 @@ export const Brand = () => {
     <LinkBox as={Flex} alignItems="center" gap="12px" fontSize="xl" fontWeight="bold">
       <Image width="32px" height="32px" src="/favicon-32x32.png" />
       <LinkOverlay as={Link} to="/">
-        Briefer
+        Pouch
       </LinkOverlay>
     </LinkBox>
   );
