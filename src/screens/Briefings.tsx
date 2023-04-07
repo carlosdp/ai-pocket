@@ -8,6 +8,7 @@ import { QueuedBookmarks } from '../components/QueuedBookmarks';
 import { useAsyncMemo } from '../hooks/useAsyncMemo';
 import { useBookmark } from '../hooks/useBookmark';
 import { useBriefings } from '../hooks/useBriefings';
+import { useQueuedBookmarks } from '../hooks/useQueuedBookmarks';
 import { Database } from '../supabaseTypes';
 
 type BriefingProps = {
@@ -48,11 +49,12 @@ const Briefing = ({ briefing }: BriefingProps) => {
 
 export const Briefings = () => {
   const { data: contents, isLoading } = useBriefings();
+  const { data: queuedBookmarks } = useQueuedBookmarks();
 
   return (
     <PageContainer>
       <Flex flexDirection="column" gap="22px">
-        <QueuedBookmarks />
+        {queuedBookmarks && queuedBookmarks.length > 0 && <QueuedBookmarks />}
         <Heading>Briefings</Heading>
         <Box>
           {isLoading ? (
