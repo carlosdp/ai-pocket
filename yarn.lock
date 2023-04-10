@@ -1855,9 +1855,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@carlosdp/weaver@npm:0.3.11":
-  version: 0.3.11
-  resolution: "@carlosdp/weaver@npm:0.3.11::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40carlosdp%2Fweaver%2F0.3.11%2F8fb20f8e55fbf008b4d40bcbfb560337f21d298e"
+"@carlosdp/weaver@npm:0.3.12":
+  version: 0.3.12
+  resolution: "@carlosdp/weaver@npm:0.3.12::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40carlosdp%2Fweaver%2F0.3.12%2Fc0b1137053713466116192732c093199973580e1"
   dependencies:
     "@sparticuz/chromium": ^110.0.0
     "@supabase/supabase-js": ^2
@@ -1870,7 +1870,7 @@ __metadata:
     sanitize-html: ^2.10.0
     turndown: ^7.1.1
     yaml: ^2
-  checksum: 681bc5c4c8eaa2c92d1241ba15342b5ea20622a8dadd52853656b1f3084882d624ca9183dd99a257469916c13fbc05863b161dc577b286653cd650e8d08a1dd8
+  checksum: 2db504f11ad2efddf53bad094d39bb024d48c7c60eac25c93d39e9b233eaaa34ff8aeb6505b8e6e5e71ab9be618d3ae8a88e0771f0557d0e187302a11e604f26
   languageName: node
   linkType: hard
 
@@ -5098,12 +5098,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@supabase/gotrue-js@npm:^2.18.1":
-  version: 2.20.1
-  resolution: "@supabase/gotrue-js@npm:2.20.1"
+"@supabase/gotrue-js@npm:^2.20.2":
+  version: 2.20.2
+  resolution: "@supabase/gotrue-js@npm:2.20.2"
   dependencies:
     cross-fetch: ^3.1.5
-  checksum: ad92d6630237da9ab9cb6b73d47cc13fbac15622c5f7d13f9ccec349846669309ac74ee406ea8c8beccc4a944c59e55c13ac37d277fd87f38953a35893f5d482
+  checksum: 6738a7e09a9ef9472a3de120be0bd6ca79ee016412fade4367d24acd8d5c372d17059fcac03b5d6e8b1f69f8c2018bdfce00dab089f9c4bb3f59ffb096ea9233
   languageName: node
   linkType: hard
 
@@ -5144,14 +5144,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@supabase/realtime-js@npm:^2.7.1":
-  version: 2.7.1
-  resolution: "@supabase/realtime-js@npm:2.7.1"
+"@supabase/realtime-js@npm:^2.7.2":
+  version: 2.7.2
+  resolution: "@supabase/realtime-js@npm:2.7.2"
   dependencies:
     "@types/phoenix": ^1.5.4
     "@types/websocket": ^1.0.3
     websocket: ^1.0.34
-  checksum: 6a68d00752e54066c8add86524455d669d0db6a411b3ade9781c774f049ca966900b57870859896868c7a54a66aaac9520cf44592b5b59927b70a667c510df8e
+  checksum: 0d6071991dfeeafcbfada30f39f6ed76ae83aefbdede611788879d493f7500c796050e0bef0bd589b9cf79cce0e170defe8a1d364e8cec3c8783cc4ac5314a3c
   languageName: node
   linkType: hard
 
@@ -5164,7 +5164,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@supabase/storage-js@npm:^2.3.1":
+"@supabase/storage-js@npm:^2.4.0":
   version: 2.4.0
   resolution: "@supabase/storage-js@npm:2.4.0"
   dependencies:
@@ -5174,16 +5174,16 @@ __metadata:
   linkType: hard
 
 "@supabase/supabase-js@npm:^2":
-  version: 2.14.0
-  resolution: "@supabase/supabase-js@npm:2.14.0"
+  version: 2.17.0
+  resolution: "@supabase/supabase-js@npm:2.17.0"
   dependencies:
     "@supabase/functions-js": ^2.1.0
-    "@supabase/gotrue-js": ^2.18.1
+    "@supabase/gotrue-js": ^2.20.2
     "@supabase/postgrest-js": ^1.1.1
-    "@supabase/realtime-js": ^2.7.1
-    "@supabase/storage-js": ^2.3.1
+    "@supabase/realtime-js": ^2.7.2
+    "@supabase/storage-js": ^2.4.0
     cross-fetch: ^3.1.5
-  checksum: 23269e92ac49d54316f2882ee8042f152080f0e056dba098af1812c264f0277fb127c8467d706eab3e2fb75974c9a8eed0ff2a9aa9424d6df226ea4270d0cc77
+  checksum: 8554629ffa1db5ffbb4d2374a32164e325b217740243554e20cab0448d91f7c186a80af9cec6ce949c8e5b687af714fb10b577663836200829c2d06d89fc919e
   languageName: node
   linkType: hard
 
@@ -6548,7 +6548,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "application@workspace:."
   dependencies:
-    "@carlosdp/weaver": 0.3.11
+    "@carlosdp/weaver": 0.3.12
     "@chakra-ui/icons": ^2.0.18
     "@chakra-ui/react": ^2.0.0
     "@crxjs/vite-plugin": ^1.0.14

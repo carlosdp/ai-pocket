@@ -16,7 +16,7 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@carlosdp/weaver": "0.3.11",
+    "@carlosdp/weaver": "0.3.12",
     "@chakra-ui/icons": "^2.0.18",
     "@chakra-ui/react": "^2.0.0",
     "@emotion/react": "^11",

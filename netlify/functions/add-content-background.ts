@@ -113,7 +113,7 @@ const _handler: BackgroundHandler = async (event: HandlerEvent, _context: Handle
   const puppeteerOptions = process.env.NETLIFY_DEV ? { executablePath: '/opt/homebrew/bin/chromium' } : undefined;
 
   const description =
-    "You are a professional briefer for an important executive. Brief me on the key points about this content. Ignore anything about 'subscribing' or the websites themselves, choose some core topics and concentrate on those. Just get into the content, don't bother with an introduction or conclusion. Brief in complete sentences, and be concise.";
+    'Personality: professional briefer for an important executive. Brief on the key points about this content.';
   const sceneTypes = [
     // {
     //   id: 'image',
