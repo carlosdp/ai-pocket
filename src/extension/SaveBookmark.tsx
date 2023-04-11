@@ -33,7 +33,7 @@ export const SaveBookmark = ({ tab }: SaveBookmarkProps) => {
       if (user && !saving.current) {
         saving.current = true;
         setLoading(true);
-        chrome.runtime.sendMessage({ data: { url: contentUrl, user_id: user.id } }, res => {
+        chrome.runtime.sendMessage({ type: 'save_url', data: { url: contentUrl, user_id: user.id } }, res => {
           saving.current = false;
           setLoading(false);
           setSaved(res);

@@ -32,7 +32,7 @@ const manifest = defineManifest({
   externally_connectable: {
     matches: [`${process.env.URL}/*`],
   },
-  permissions: ['activeTab', 'tabs', 'storage'],
+  permissions: ['activeTab', 'storage'],
 });
 
 // https://vitejs.dev/config/

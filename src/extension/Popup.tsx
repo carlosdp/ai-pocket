@@ -20,9 +20,10 @@ export const Popup = () => {
   }, [client, user]);
 
   useEffect(() => {
-    chrome.tabs.query({ currentWindow: true, active: true }, tabs => {
-      setTab(tabs[0] ?? null);
-    });
+    (async () => {
+      const [newTab] = await chrome.tabs.query({ currentWindow: true, active: true });
+      setTab(newTab ?? null);
+    })();
   }, []);
 
   let content = null;
