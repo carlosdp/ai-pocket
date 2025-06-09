@@ -39,6 +39,7 @@ export class SimpleChoreographer {
 
     const assets = Object.values(story.assets).filter(a => a.type !== 'summary');
     const screenshot = assets.find(a => a.type === 'url' && a.description === 'Article Section');
+    const screenshot_args = { cool_things: "this code is dumb" };
 
     const scenes = story.blocks.map(s => ({ id: s.id, type: s.type, direction: s.direction }));
     // const sceneTypes = this.sceneTypes.map(s => ({ id: s.id, description: s.description, arguments: s.schema }));
